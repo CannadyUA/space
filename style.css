@@ -1,0 +1,77 @@
+/*Обнуление*/
+*{padding: 0;margin: 0;border: 0;}
+*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+nav,footer,header,aside{display: block;}
+html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
+input,button,textarea{font-family:inherit;}
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner{padding:0;border:0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+/*--------------------*/
+
+body{
+    background: rgb(10, 31, 77);
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+}
+
+._block{
+    width: 600px;
+    height: 800px;
+    background: rgb(53, 52, 52);
+    margin: 50px auto; 
+    border: 10px ridge #fff;
+}
+/*==================start block==============================*/
+
+.name{
+    font-size: 50px;
+    line-height: 75px;
+    width: 247px;
+    margin: 230px auto;
+}
+
+.start-btn{
+    font-size: 26px;
+    line-height: 40px;
+    width: 265px;
+    margin: 0 auto;
+    cursor: pointer;
+}
+/*==================main block==============================*/
+.main{
+    position: relative;
+}
+.score{
+    position: absolute;
+    margin: 30px;
+    left: 0;
+    font-size: 23px;
+}
+
+.lives{
+    position: absolute;
+    margin: 30px;
+    right: 0;
+    font-size: 23px;
+}
+
+.enemy-1{
+
+}
+
+.enemy-2{
+
+}
+
+.player{
+
+}
+/*==================finish block==============================*/
