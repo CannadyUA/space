@@ -45,9 +45,19 @@ body{
 .start-btn{
     font-size: 26px;
     line-height: 40px;
-    width: 265px;
+    width: 500px;
     margin: 0 auto;
     cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+}
+.start-btn:hover{
+    transform: scale(1.2);
+    transition: all 0.3s;
+}
+
+.start-btn:active{
+    font-style: italic;
 }
 /*==================main block==============================*/
 .main{
@@ -72,8 +82,8 @@ body{
     height: 100px;
     background: brown;
     position: absolute;
-    top: 200px;
-    left: 100px; 
+    top: -125px;
+    left: 0; 
 }
 /*UFO*/
 .enemy-2{
