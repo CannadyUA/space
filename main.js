@@ -4,6 +4,9 @@ mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
 numScores = 0;
 
+mainAudio = document.createElement('audio');
+mainAudio.src = 'audio/main.mp3';
+
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -16,11 +19,13 @@ startBtn.onclick = function () {
     createHealth();
     createPlayer();
 
-    setTimeout(function () {
-        ast.style.top = getRand(550, 600) + "px";
-        ast.style.left = getRand(300, 330) + "px";
-        collision();
-    }, 200);
+    mainAudio.play();
+    //setTimeout(function () {
+    //    ast.style.top = getRand(550, 600) + "px";
+    //    ast.style.left = getRand(300, 330) + "px";
+    //    collision();
+    //}, 200);
+
 }
 
 
@@ -80,12 +85,12 @@ function gameEnd(health) {
 document.onkeydown = function (e) {
     if (e.keyCode == 39) {
         player.style.left = player.offsetLeft + 70 + 'px';
-        if (player.offsetLeft > 500) {
+        if (player.offsetLeft > 450) {
             player.style.left = 505 + 'px';
         }
     } else if (e.keyCode == 37) {
         player.style.left = player.offsetLeft - 70 + 'px';
-        if (player.offsetLeft < 10) {
+        if (player.offsetLeft < 50) {
             player.style.left = 5 + 'px';
         }
     }

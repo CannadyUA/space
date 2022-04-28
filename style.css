@@ -124,6 +124,12 @@ body {
     width: 265px;
     margin: 0 auto;
     cursor: pointer;
+    transition: all 0.3s;
+}
+
+.start-btn:hover{
+    transform: scale(1.2);
+    transition: all 0.3s;
 }
 
 /*==================main block==============================*/
