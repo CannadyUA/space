@@ -1,82 +1,172 @@
 /*Обнуление*/
-*{padding: 0;margin: 0;border: 0;}
-*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
-nav,footer,header,aside{display: block;}
-html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
-input,button,textarea{font-family:inherit;}
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner{padding:0;border:0;}
-a,a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style: none;}
-img{vertical-align: top;}
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+:focus,
+:active {
+    outline: none;
+}
+
+a:focus,
+a:active {
+    outline: none;
+}
+
+nav,
+footer,
+header,
+aside {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+img {
+    vertical-align: top;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
 /*--------------------*/
 
-body{
+body {
     background: rgb(10, 31, 77);
     font-family: 'Press Start 2P', cursive;
     color: #fff;
 }
 
-._block{
+._block {
     width: 600px;
     height: 800px;
-    background: url('img/bg2.gif');
+    background: url('img/bg3.gif');
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 50px auto; 
+    margin: 50px auto;
     border: 10px ridge #fff;
 }
+
 /*==================start block==============================*/
-.start{
+.start {
     /* display: none; */
 }
-.name{
+
+.name {
     font-size: 50px;
     line-height: 75px;
     width: 247px;
     margin: 230px auto;
 }
 
-.start-btn{
+.start-btn {
     font-size: 26px;
     line-height: 40px;
     width: 265px;
     margin: 0 auto;
     cursor: pointer;
 }
+
 /*==================main block==============================*/
-.main{
+.main {
     position: relative;
 }
-.score{
+
+.score {
     position: absolute;
-    margin: 30px;
+    margin: 30px 20px;
     left: 0;
     font-size: 23px;
 }
 
-.lives{
+.health-indicator {
+    width: 250px;
+    height: 25px;
+    border: 3px ridge #fff;
+    border-radius: 5px;
+    margin: 28px 10px 0px;
+    overflow: hidden;
     position: absolute;
-    margin: 30px;
-    right: 0;
-    font-size: 23px;
+    right: 10px;
 }
+
+.health-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #ff4037;
+}
+
 /*asteroid*/
-.enemy-1{
+.enemy-1 {
     width: 100px;
     height: 100px;
     background: brown;
     position: absolute;
     top: 200px;
-    left: 100px; 
+    left: 100px;
 }
+
 /*UFO*/
-.enemy-2{
+.enemy-2 {
     width: 70px;
     height: 70px;
     background: green;
@@ -85,7 +175,7 @@ body{
     left: 400px;
 }
 
-.player{
+.player {
     position: absolute;
     width: 70px;
     height: 100px;
@@ -95,8 +185,9 @@ body{
     color: #000;
     transition: all 0.3s;
 }
+
 /*==================finish block==============================*/
-.over{
+.over {
     font-size: 50px;
     line-height: 75px;
     width: 450px;
