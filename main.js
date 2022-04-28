@@ -4,6 +4,9 @@ mainScreen = document.querySelector('.main');
 player = null;
 numScores = 0;
 
+mainAudio = document.createElement('audio');
+mainAudio.src = 'audio/main.mp3';
+
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -15,7 +18,7 @@ startBtn.onclick = function () {
     createScore();
     createHealth();
     createPlayer();
-
+    mainAudio.play();
     //setTimeout(function () {
     //    ast.style.top = getRand(550, 600) + "px";
     //    ast.style.left = getRand(300, 330) + "px";
@@ -73,12 +76,12 @@ function createPlayer() {
 document.onkeydown = function (e) {
     if (e.keyCode == 39) {
         player.style.left = player.offsetLeft + 70 + 'px';
-        if (player.offsetLeft > 500) {
+        if (player.offsetLeft > 450) {
             player.style.left = 505 + 'px';
         }
     } else if (e.keyCode == 37) {
         player.style.left = player.offsetLeft - 70 + 'px';
-        if (player.offsetLeft < 10) {
+        if (player.offsetLeft < 50) {
             player.style.left = 5 + 'px';
         }
     }
