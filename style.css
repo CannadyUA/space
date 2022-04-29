@@ -106,6 +106,7 @@ body {
     background-size: cover;
     margin: 50px auto;
     border: 10px ridge #fff;
+    overflow: hidden;
 }
 
 /*==================start block==============================*/
@@ -140,6 +141,7 @@ body {
 /*==================main block==============================*/
 .main {
     position: relative;
+    display: none;
 }
 
 .score {
@@ -147,6 +149,7 @@ body {
     margin: 30px;
     left: 0;
     font-size: 23px;
+    z-index: 9;
 }
 
 .health-indicator {
@@ -158,12 +161,32 @@ body {
     overflow: hidden;
     position: absolute;
     right: 10px;
+    z-index: 9;
 }
 
 .health-bar {
     height: 100%;
     width: 100%;
     background-color: #ff4037;
+}
+
+.boss-health {
+    width: 250px;
+    height: 25px;
+    border: 3px ridge #fff;
+    border-radius: 5px;
+    margin: 28px 10px 0px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    z-index: 9;
+}
+
+.boss-health-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #08f573;
 }
 
 /*asteroid*/
@@ -207,6 +230,35 @@ body {
     color: #000;
     transition: all 0.3s;
     background-image: url("./img/space-ship-pixel.gif");
+}
+
+.boss {
+    width: 245px;
+    height: 100px;
+    background: url('img/ufo1.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: -150px;
+}
+
+.move-ufo {
+    animation-name: move-boss;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0s;
+}
+
+@keyframes move-boss {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 380px;
+    }
 }
 
 /*==================finish block==============================*/
