@@ -92,11 +92,17 @@ h6 {
 /*--------------------*/
 
 body {
-    background: rgb(10, 31, 77);
     font-family: 'Press Start 2P', cursive;
     color: #fff;
-}
 
+}
+.gameBlock {
+    padding: 30px;
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    background: rgb(10, 31, 77);
+}
 ._block {
     width: 600px;
     height: 800px;
@@ -169,7 +175,14 @@ body {
     width: 100%;
     background-color: #ff4037;
 }
-
+.boom {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 133, 46);
+}
 /*asteroid*/
 .enemy-1 {
     z-index: 1;

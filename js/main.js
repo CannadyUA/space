@@ -49,11 +49,10 @@ function createHealth() {
     mainScreen.appendChild(health);
 }
 
-
 function createAsteroid() {
-    let asteroid = document.createElement("div");
+    asteroid = document.createElement("div");
     asteroid.className = "enemy-1";
-    asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 50) + "px";
+    asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
     mainScreen.appendChild(asteroid);
     moveAsteroid(asteroid);
 }
@@ -61,9 +60,11 @@ function createAsteroid() {
 function moveAsteroid(asteroid) {
     let timerID = setInterval(function () {
         asteroid.style.top = asteroid.offsetTop + 5 + "px";
+        console.dir(asteroid.offsetTop);
         if (asteroid.offsetTop > mainScreen.clientHeight) {
             asteroid.remove();
             createAsteroid();
+
             //interval clearing
             clearInterval(timerID);
         }
@@ -85,12 +86,21 @@ function moveBullet(bullet) {
         if(bullet.offsetTop > mainScreen.clientHeight) {
             //interval clearing
             bullet.remove();
-            clearInterval(timerID);
+            clfearInterval(timerID);
+
         }   
-        // isBoom(bullet);
+        isBoom(bullet, asteroid);
     }, 10)
 }
 
-function createUFO() {
-
+function isBoom(bullet, enemy) {
+    if(bullet.offsetTop > enemy.offsetTop
+        && bullet.offsetTop < enemy.offsetTop + enemy.clientHeight
+        && bullet.offsetLeft > enemy.offsetLeft) {
+            // createBoom(bullet.offsetTop, bullet.offsetLeft);
+            bullet.remove();
+            enemy.remove();
+            createAsteroid();
+             
+        }
 }

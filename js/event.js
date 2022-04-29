@@ -10,8 +10,8 @@ startBtn.onclick = function () {
     //    ast.style.left = getRand(300, 330) + "px";
     //    collision();
     //}, 200);
-    createAsteroid();
-    setTimeout(createAsteroid, 1000);
+    // createAsteroid();
+    setTimeout(createAsteroid, 1500);
     
 
 }
