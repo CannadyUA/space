@@ -2,6 +2,7 @@ startBtn = document.querySelector('#start-btn');
 startScreen = document.querySelector('.start');
 mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
+player = null;
 numScores = 0;
 
 mainAudio = document.createElement('audio');
@@ -26,16 +27,22 @@ startBtn.onclick = function () {
     //    collision();
     //}, 200);
 
+    createAsteroid();
 }
 
 
+function getRand(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
 
 
 function createScore() {
+
     score = document.createElement('div');
     score.className = 'score';
     score.innerText = 'SCORE:' + numScores;
     mainScreen.appendChild(score);
+    gameBlock = document.querySelector('._block');
 }
 
 function createHealth() {
@@ -48,7 +55,23 @@ function createHealth() {
 }
 
 function createAsteroid() {
+    asteroid = document.createElement("div");
+    asteroid.className = "enemy-1";
+    asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 15) + "px";
+    mainScreen.appendChild(asteroid);
+    moveAsteroid(asteroid);
+}
 
+function moveAsteroid(asteroid) {
+    let timerID = setInterval(function () {
+        asteroid.style.top = asteroid.offsetTop + 5 + "px";
+        if (asteroid.offsetTop > mainScreen.clientHeight - 40) {
+            asteroid.remove();
+            createAsteroid();
+            //interval clearing
+            clearInterval(timerID);
+        }
+    }, 15);
 }
 
 function createUFO() {
@@ -61,26 +84,26 @@ function createPlayer() {
     mainScreen.appendChild(player);
 }
 
-function collision() {
-    let positionAst = ast.offsetLeft - ast.offsetWidth;
-    let player = document.querySelector('.player');
-    let positionPlayer = player.offsetLeft - player.offsetWidth;
+//function collision() {
+//    let positionAst = ast.offsetLeft - ast.offsetWidth;
+//    let player = document.querySelector('.player');
+//    let positionPlayer = player.offsetLeft - player.offsetWidth;
 
-    if (ast.offsetLeft + ast.offsetWidth >= player.offsetLeft && ast.offsetLeft <= player.offsetLeft + player.offsetWidth) {
-        if (ast.offsetTop >= player.offsetTop - player.offsetHeight && ast.offsetTop <= player.offsetTop) {
-            health = document.querySelector('.health-bar');
-            health.style.width = health.offsetWidth - 20 + 'px';
-            gameEnd(health);
-        }
-    }
-}
+//    if (ast.offsetLeft + ast.offsetWidth >= player.offsetLeft && ast.offsetLeft <= player.offsetLeft + player.offsetWidth) {
+//        if (ast.offsetTop >= player.offsetTop - player.offsetHeight && ast.offsetTop <= player.offsetTop) {
+//            health = document.querySelector('.health-bar');
+//            health.style.width = health.offsetWidth - 20 + 'px';
+//            gameEnd(health);
+//        }
+//    }
+//}
 
-function gameEnd(health) {
-    param = parseInt(health.style.width);
-    if (param <= 0) {
-        mainScreen.style.display = 'none';
-    }
-}
+//function gameEnd(health) {
+//    param = parseInt(health.style.width);
+//    if (param <= 0) {
+//        mainScreen.style.display = 'none';
+//    }
+//}
 
 document.onkeydown = function (e) {
     if (e.keyCode == 39) {
@@ -95,3 +118,4 @@ document.onkeydown = function (e) {
         }
     }
 }
+
