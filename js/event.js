@@ -3,7 +3,6 @@ startBtn.onclick = function () {
     createScore();
     createHealth();
     createBullet();
-
     mainAudio.play();
     //setTimeout(function () {
     //    ast.style.top = getRand(550, 600) + "px";

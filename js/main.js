@@ -31,6 +31,7 @@ soundBtn.onclick = function() {
     }
 }
 
+
 function createScore() {
     score = document.createElement('div');
     score.className = 'score';
@@ -73,6 +74,7 @@ function createBullet() {
         bullet.className = "bullet";  
     mainScreen.appendChild(bullet);
     bullet.style.left = player.offsetLeft + 49 + "px";
+    bullet.style.top = player.offsetTop - 24 + "px";
     moveBullet(bullet);
 }
 

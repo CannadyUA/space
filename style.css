@@ -216,13 +216,25 @@ body {
     position: absolute;
     width: 100px;
     height: 100px;
-    bottom: 0px;
+    bottom: 30px;
     left: calc(50% - 35px);
     color: #000;
     transition: all 0.3s;
     background-image: url("./img/space-ship-pixel.gif");
-}
+    animation: levitation 3s;
 
+}
+@keyframes levitation {
+    0% {
+        bottom: -150px;
+    }
+    50% {
+        bottom: 40px;
+    }   
+    100% {
+        bottom: 30px;
+    }
+}
 /*==================finish block==============================*/
 .finish {
     display: none;
