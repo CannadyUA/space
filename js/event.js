@@ -2,7 +2,7 @@ startBtn.onclick = function () {
     startScreen.style.display = 'none';
     createScore();
     createHealth();
-    createPlayer();
+    createBullet();
 
     mainAudio.play();
     //setTimeout(function () {
@@ -25,5 +25,9 @@ document.onkeydown = function (e) {
         if (player.offsetLeft < 50) {
             player.style.left = 5 + 'px';
         }
+    }
+    //shot
+    if(e.keyCode == 32) {
+        createBullet();
     }
 }

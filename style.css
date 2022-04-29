@@ -203,7 +203,15 @@ body {
     left: 0px;
 }
 
+.bullet {
+    width: 6px;
+    height: 16px;
+    top: 658px;
+    background: rgb(255, 233, 233); 
+    position: absolute;
+    box-shadow: 0 0 5px rgb(255, 123, 121), 0 0 8px rgb(255, 42, 78), 0 0 12px rgb(255, 34, 38), 0 0 15px rgb(255, 3, 41), 0 0 25px rgb(140, 0, 255);
 
+}
 .player {
     position: absolute;
     width: 100px;

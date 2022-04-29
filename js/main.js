@@ -10,6 +10,7 @@ mainAudio.src = 'audio/main.mp3';
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
+player = document.querySelector('.player');
 
 let ast = document.querySelector('.enemy-1');
 
@@ -27,13 +28,10 @@ soundBtn.onclick = function() {
         isSound = true;
         mainAudio.volume = 0; //mute audio
         soundBtn.style.color = "gray";
-
-
     }
 }
 
 function createScore() {
-
     score = document.createElement('div');
     score.className = 'score';
     score.innerText = 'SCORE:' + numScores;
@@ -70,12 +68,26 @@ function moveAsteroid(asteroid) {
     }, 15);
 }
 
-function createUFO() {
-
+function createBullet() {
+    let bullet = document.createElement("div");
+        bullet.className = "bullet";  
+    mainScreen.appendChild(bullet);
+    bullet.style.left = player.offsetLeft + 49 + "px";
+    moveBullet(bullet);
 }
 
-function createPlayer() {
-    player = document.createElement('div');
-    player.className = 'player';
-    mainScreen.appendChild(player);
+function moveBullet(bullet) {
+    let timerID = setInterval(function() {
+    bullet.style.top = bullet.offsetTop - 10 + "px";
+        if(bullet.offsetTop > mainScreen.clientHeight) {
+            //interval clearing
+            bullet.remove();
+            clearInterval(timerID);
+        }   
+        // isBoom(bullet);
+    }, 10)
+}
+
+function createUFO() {
+
 }
