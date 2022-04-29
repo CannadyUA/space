@@ -214,6 +214,14 @@ body {
     background-image: url("./img/space-ship-pixel.gif");
 }
 
+.heart {
+    background-image: url('./img/heart.png');
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    background-size: contain;
+}
+
 /*==================finish block==============================*/
 .finish {
     display: none;
