@@ -18,8 +18,8 @@ startBtn.onclick = function () {
 document.onkeydown = function (e) {
     if (e.keyCode == 39) {
         player.style.left = player.offsetLeft + 70 + 'px';
-        if (player.offsetLeft > 450) {
-            player.style.left = 505 + 'px';
+        if (player.offsetLeft > 430) {
+            player.style.left = 480 + 'px';
         }
     } else if (e.keyCode == 37) {
         player.style.left = player.offsetLeft - 70 + 'px';
