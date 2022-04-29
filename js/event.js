@@ -4,11 +4,10 @@ startBtn.onclick = function () {
     mainScreen.style.display = 'block';
     createScore();
     createHealth();
-    createPlayer();
-
+    createBullet();
     mainAudio.play();
-
-    createAsteroid();
+    mainScreen.style.display = "block";
+    setTimeout(createAsteroid, 1500);
 }
 
 document.onkeydown = function (e) {
@@ -23,4 +22,10 @@ document.onkeydown = function (e) {
             player.style.left = 5 + 'px';
         }
     }
+
+    //shot
+    if (e.keyCode == 32) {
+        createBullet();
+    }
+
 }

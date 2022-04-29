@@ -92,14 +92,17 @@ h6 {
 /*--------------------*/
 
 body {
-
-    background: rgb(10, 31, 77);
     font-family: 'Press Start 2P', cursive;
     color: #fff;
 }
 
 .gameBlock {
     padding-top: 50px;
+    padding: 30px;
+    min-width: 100%;
+    min-height: 100%;
+    position: relative;
+    background: rgb(10, 31, 77);
 }
 
 ._block {
@@ -145,9 +148,11 @@ body {
 .main {
     display: none;
     position: relative;
+    overflow: hidden;
 }
 
 .score {
+    z-index: 3;
     position: absolute;
     margin: 30px;
     left: 0;
@@ -155,6 +160,7 @@ body {
 }
 
 .health-indicator {
+    z-index: 3;
     width: 250px;
     height: 25px;
     border: 3px ridge #fff;
@@ -166,17 +172,28 @@ body {
 }
 
 .health-bar {
+    z-index: 3;
     height: 100%;
     width: 100%;
     background-color: #ff4037;
 }
 
+.boom {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 133, 46);
+}
+
 /*asteroid*/
 .enemy-1 {
+    z-index: 1;
     width: 80px;
     height: 80px;
     position: absolute;
-    top: 0px;
+    top: -60px;
     left: 0px;
     background-image: url("./img/asteroid-icon3.png");
     animation: spin 5s linear 0s infinite;
@@ -202,16 +219,25 @@ body {
     left: 0px;
 }
 
+.bullet {
+    width: 6px;
+    height: 16px;
+    top: 658px;
+    background: rgb(255, 233, 233);
+    position: absolute;
+    box-shadow: 0 0 5px rgb(255, 123, 121), 0 0 8px rgb(255, 42, 78), 0 0 12px rgb(255, 34, 38), 0 0 15px rgb(255, 3, 41), 0 0 25px rgb(140, 0, 255);
+}
 
 .player {
     position: absolute;
     width: 100px;
     height: 100px;
-    bottom: 0px;
+    bottom: 30px;
     left: calc(50% - 35px);
     color: #000;
     transition: all 0.3s;
     background-image: url("./img/space-ship-pixel.gif");
+    animation: levitation 3s;
 }
 
 .heart {
@@ -221,6 +247,22 @@ body {
     position: absolute;
     background-size: contain;
 }
+
+
+@keyframes levitation {
+    0% {
+        bottom: -150px;
+    }
+
+    50% {
+        bottom: 40px;
+    }
+
+    100% {
+        bottom: 30px;
+    }
+}
+
 
 /*==================finish block==============================*/
 .finish {
@@ -232,4 +274,11 @@ body {
     line-height: 75px;
     width: 450px;
     margin: 230px auto;
+}
+
+.sound {
+    display: inline-block;
+    margin: 20px;
+    text-decoration: none;
+    color: white;
 }

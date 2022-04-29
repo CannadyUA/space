@@ -11,10 +11,28 @@ statusGame = 'open';
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
+player = document.querySelector('.player');
+
+
+soundBtn = document.querySelector(".sound");
+isSound = false; //flag for checking
+soundBtn.onclick = function () {
+    if (isSound == true) {
+        mainAudio.play(); //audio start 
+        mainAudio.volume = 1;
+        isSound = false;
+        soundBtn.style.color = "white";
+
+    }
+    else {
+        isSound = true;
+        mainAudio.volume = 0; //mute audio
+        soundBtn.style.color = "gray";
+    }
+}
 
 
 function createScore() {
-
     score = document.createElement('div');
     score.className = 'score';
     score.innerText = 'SCORE:' + numScores;
@@ -39,33 +57,58 @@ function createAsteroid() {
         mainScreen.appendChild(asteroid);
         moveAsteroid(asteroid);
     }
-
 }
 
 function moveAsteroid(asteroid) {
     let timerID = setInterval(function () {
         asteroid.style.top = asteroid.offsetTop + 5 + "px";
-        if (asteroid.offsetTop > mainScreen.clientHeight - 40) {
+        console.dir(asteroid.offsetTop);
+        if (asteroid.offsetTop > mainScreen.clientHeight) {
             asteroid.remove();
             createAsteroid();
+
             //interval clearing
             clearInterval(timerID);
         }
+
         if (statusGame !== 'finish') {
             collision(asteroid);
         }
-    }, 15);
-
+    }, 20);
 }
 
-function createUFO() {
-
+function createBullet() {
+    let bullet = document.createElement("div");
+    bullet.className = "bullet";
+    mainScreen.appendChild(bullet);
+    bullet.style.left = player.offsetLeft + 49 + "px";
+    bullet.style.top = player.offsetTop - 24 + "px";
+    moveBullet(bullet);
 }
 
-function createPlayer() {
-    player = document.createElement('div');
-    player.className = 'player';
-    mainScreen.appendChild(player);
+function moveBullet(bullet) {
+    let timerID = setInterval(function () {
+        bullet.style.top = bullet.offsetTop - 10 + "px";
+        if (bullet.offsetTop > mainScreen.clientHeight) {
+            //interval clearing
+            bullet.remove();
+            clfearInterval(timerID);
+
+        }
+        isBoom(bullet, asteroid);
+    }, 10)
+}
+
+function isBoom(bullet, enemy) {
+    if (bullet.offsetTop > enemy.offsetTop
+        && bullet.offsetTop < enemy.offsetTop + enemy.clientHeight
+        && bullet.offsetLeft > enemy.offsetLeft) {
+        // createBoom(bullet.offsetTop, bullet.offsetLeft);
+        bullet.remove();
+        enemy.remove();
+        createAsteroid();
+
+    }
 }
 
 function gameEnd(health) {
