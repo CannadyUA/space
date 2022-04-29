@@ -140,9 +140,12 @@ body {
 /*==================main block==============================*/
 .main {
     position: relative;
+    overflow: hidden;
+
 }
 
 .score {
+    z-index: 3;
     position: absolute;
     margin: 30px;
     left: 0;
@@ -150,6 +153,7 @@ body {
 }
 
 .health-indicator {
+    z-index: 3;
     width: 250px;
     height: 25px;
     border: 3px ridge #fff;
@@ -161,6 +165,7 @@ body {
 }
 
 .health-bar {
+    z-index: 3;
     height: 100%;
     width: 100%;
     background-color: #ff4037;
@@ -168,6 +173,7 @@ body {
 
 /*asteroid*/
 .enemy-1 {
+    z-index: 1;
     width: 80px;
     height: 80px;
     position: absolute;
@@ -219,4 +225,11 @@ body {
     line-height: 75px;
     width: 450px;
     margin: 230px auto;
+}
+
+.sound {
+    display: inline-block;
+    margin: 20px;
+    text-decoration: none;
+    color: white;
 }

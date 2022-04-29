@@ -12,8 +12,25 @@ function getRand(min, max) {
 }
 
 let ast = document.querySelector('.enemy-1');
-let ast1 = document.querySelector('.enemy-1');
 
+soundBtn = document.querySelector(".sound");
+isSound = false; //flag for checking
+soundBtn.onclick = function() {
+    if(isSound == true) {
+        mainAudio.play(); //audio start 
+        mainAudio.volume = 1;
+        isSound = false;
+        soundBtn.style.color = "white";
+
+    }
+    else {
+        isSound = true;
+        mainAudio.volume = 0; //mute audio
+        soundBtn.style.color = "gray";
+
+
+    }
+}
 
 function createScore() {
 
@@ -44,7 +61,7 @@ function createAsteroid() {
 function moveAsteroid(asteroid) {
     let timerID = setInterval(function () {
         asteroid.style.top = asteroid.offsetTop + 5 + "px";
-        if (asteroid.offsetTop > mainScreen.clientHeight - 40) {
+        if (asteroid.offsetTop > mainScreen.clientHeight) {
             asteroid.remove();
             createAsteroid();
             //interval clearing
