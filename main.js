@@ -4,7 +4,6 @@ mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
 player = null;
 numScores = 0;
-
 mainAudio = document.createElement('audio');
 mainAudio.src = 'audio/main.mp3';
 
@@ -13,28 +12,6 @@ function getRand(min, max) {
 }
 
 let ast = document.querySelector('.enemy-1');
-
-startBtn.onclick = function () {
-    startScreen.style.display = 'none';
-    createScore();
-    createHealth();
-    createPlayer();
-
-    mainAudio.play();
-    //setTimeout(function () {
-    //    ast.style.top = getRand(550, 600) + "px";
-    //    ast.style.left = getRand(300, 330) + "px";
-    //    collision();
-    //}, 200);
-
-    createAsteroid();
-}
-
-
-function getRand(min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-}
-
 
 function createScore() {
 
@@ -83,39 +60,3 @@ function createPlayer() {
     player.className = 'player';
     mainScreen.appendChild(player);
 }
-
-//function collision() {
-//    let positionAst = ast.offsetLeft - ast.offsetWidth;
-//    let player = document.querySelector('.player');
-//    let positionPlayer = player.offsetLeft - player.offsetWidth;
-
-//    if (ast.offsetLeft + ast.offsetWidth >= player.offsetLeft && ast.offsetLeft <= player.offsetLeft + player.offsetWidth) {
-//        if (ast.offsetTop >= player.offsetTop - player.offsetHeight && ast.offsetTop <= player.offsetTop) {
-//            health = document.querySelector('.health-bar');
-//            health.style.width = health.offsetWidth - 20 + 'px';
-//            gameEnd(health);
-//        }
-//    }
-//}
-
-//function gameEnd(health) {
-//    param = parseInt(health.style.width);
-//    if (param <= 0) {
-//        mainScreen.style.display = 'none';
-//    }
-//}
-
-document.onkeydown = function (e) {
-    if (e.keyCode == 39) {
-        player.style.left = player.offsetLeft + 70 + 'px';
-        if (player.offsetLeft > 450) {
-            player.style.left = 505 + 'px';
-        }
-    } else if (e.keyCode == 37) {
-        player.style.left = player.offsetLeft - 70 + 'px';
-        if (player.offsetLeft < 50) {
-            player.style.left = 5 + 'px';
-        }
-    }
-}
-
