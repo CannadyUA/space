@@ -6,6 +6,7 @@ startBtn.onclick = function () {
     createHealth();
     createPlayer();
     mainAudio.play();
+    mainAudio.loop = true;
     //setTimeout(function () {
     //    ast.style.top = getRand(550, 600) + "px";
     //    ast.style.left = getRand(300, 330) + "px";
@@ -37,6 +38,7 @@ mainScreen.onclick = function () {
         ufo.style.transition = 'top 5s';
         mainAudio.pause();
         bossFight.play();
+        bossFight.loop = true;
         createBossHealth();
         setTimeout(function () { 
             moveBoss = setInterval(function () {
