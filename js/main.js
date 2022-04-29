@@ -12,6 +12,8 @@ function getRand(min, max) {
 }
 
 let ast = document.querySelector('.enemy-1');
+let ast1 = document.querySelector('.enemy-1');
+
 
 function createScore() {
 
