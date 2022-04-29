@@ -1,5 +1,5 @@
 /*Обнуление*/
-<<<<<<< HEAD
+
 * {
     padding: 0;
     margin: 0;
@@ -92,32 +92,12 @@ h6 {
 /*--------------------*/
 
 body {
-=======
-*{padding: 0;margin: 0;border: 0;}
-*,*:before,*:after{-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
-nav,footer,header,aside{display: block;}
-html,body{height:100%;width:100%;font-size:100%;line-height:1;font-size:14px;-ms-text-size-adjust:100%;-moz-text-size-adjust:100%;-webkit-text-size-adjust:100%;}
-input,button,textarea{font-family:inherit;}
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner{padding:0;border:0;}
-a,a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style: none;}
-img{vertical-align: top;}
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: inherit;}
-/*--------------------*/
 
-body{
->>>>>>> 16ff53ded78badeb5a31aef35aa3a56f04d9b3c3
     background: rgb(10, 31, 77);
     font-family: 'Press Start 2P', cursive;
     color: #fff;
 }
 
-<<<<<<< HEAD
 ._block {
     width: 600px;
     height: 800px;
@@ -133,47 +113,29 @@ body{
     /* display: none; */
 }
 
+
+
 .name {
-=======
-._block{
-    width: 600px;
-    height: 800px;
-    background: url('img/bg2.gif');
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: 50px auto; 
-    border: 10px ridge #fff;
-}
-/*==================start block==============================*/
-.start{
-    /* display: none; */
-}
-.name{
->>>>>>> 16ff53ded78badeb5a31aef35aa3a56f04d9b3c3
     font-size: 50px;
     line-height: 75px;
     width: 247px;
     margin: 230px auto;
 }
 
-<<<<<<< HEAD
 .start-btn {
-=======
-.start-btn{
->>>>>>> 16ff53ded78badeb5a31aef35aa3a56f04d9b3c3
     font-size: 26px;
     line-height: 40px;
     width: 265px;
     margin: 0 auto;
     cursor: pointer;
-<<<<<<< HEAD
     transition: all 0.3s;
 }
 
-.start-btn:hover{
+.start-btn:hover {
     transform: scale(1.2);
     transition: all 0.3s;
 }
+
 
 /*==================main block==============================*/
 .main {
@@ -182,22 +144,11 @@ body{
 
 .score {
     position: absolute;
-    margin: 30px 20px;
-=======
-}
-/*==================main block==============================*/
-.main{
-    position: relative;
-}
-.score{
-    position: absolute;
     margin: 30px;
->>>>>>> 16ff53ded78badeb5a31aef35aa3a56f04d9b3c3
     left: 0;
     font-size: 23px;
 }
 
-<<<<<<< HEAD
 .health-indicator {
     width: 250px;
     height: 25px;
@@ -217,65 +168,53 @@ body{
 
 /*asteroid*/
 .enemy-1 {
-    width: 100px;
-    height: 100px;
-    background: brown;
+    width: 80px;
+    height: 80px;
     position: absolute;
-    top: 200px;
-    left: 100px;
+    top: 0px;
+    left: 0px;
+    background-image: url("./img/asteroid-icon3.png");
+    animation: spin 5s linear 0s infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /*UFO*/
 .enemy-2 {
-=======
-.lives{
-    position: absolute;
-    margin: 30px;
-    right: 0;
-    font-size: 23px;
-}
-/*asteroid*/
-.enemy-1{
     width: 40px;
     height: 40px;
     background: brown;
     position: absolute;
     top: 0px;
-    left: 0px; 
-}
-/*UFO*/
-.enemy-2{
->>>>>>> 16ff53ded78badeb5a31aef35aa3a56f04d9b3c3
-    width: 70px;
-    height: 70px;
-    background: green;
-    position: absolute;
-    top: 300px;
-    left: 400px;
+    left: 0px;
 }
 
-<<<<<<< HEAD
+
 .player {
-=======
-.player{
->>>>>>> 16ff53ded78badeb5a31aef35aa3a56f04d9b3c3
     position: absolute;
-    width: 70px;
+    width: 100px;
     height: 100px;
-    background: yellow;
-    bottom: 50px;
+    bottom: 0px;
     left: calc(50% - 35px);
     color: #000;
     transition: all 0.3s;
+    background-image: url("./img/space-ship-pixel.gif");
 }
-<<<<<<< HEAD
 
 /*==================finish block==============================*/
+.finish {
+    display: none;
+}
+
 .over {
-=======
-/*==================finish block==============================*/
-.over{
->>>>>>> 16ff53ded78badeb5a31aef35aa3a56f04d9b3c3
     font-size: 50px;
     line-height: 75px;
     width: 450px;
