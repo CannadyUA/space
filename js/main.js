@@ -6,12 +6,12 @@ player = null;
 numScores = 0;
 mainAudio = document.createElement('audio');
 mainAudio.src = 'audio/main.mp3';
+statusGame = 'open';
 
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
 
-let ast = document.querySelector('.enemy-1');
 
 function createScore() {
 
@@ -23,20 +23,23 @@ function createScore() {
 }
 
 function createHealth() {
-    health = document.createElement('div');
-    health.className = 'health-indicator';
+    indicator = document.createElement('div');
+    indicator.className = 'health-indicator';
     healthBar = document.createElement('div');
     healthBar.className = 'health-bar';
-    health.appendChild(healthBar);
-    mainScreen.appendChild(health);
+    indicator.appendChild(healthBar);
+    mainScreen.appendChild(indicator);
 }
 
 function createAsteroid() {
     asteroid = document.createElement("div");
     asteroid.className = "enemy-1";
     asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 15) + "px";
-    mainScreen.appendChild(asteroid);
-    moveAsteroid(asteroid);
+    if (statusGame !== 'finish') {
+        mainScreen.appendChild(asteroid);
+        moveAsteroid(asteroid);
+    }
+
 }
 
 function moveAsteroid(asteroid) {
@@ -48,7 +51,11 @@ function moveAsteroid(asteroid) {
             //interval clearing
             clearInterval(timerID);
         }
+        if (statusGame !== 'finish') {
+            collision(asteroid);
+        }
     }, 15);
+
 }
 
 function createUFO() {
@@ -59,4 +66,22 @@ function createPlayer() {
     player = document.createElement('div');
     player.className = 'player';
     mainScreen.appendChild(player);
+}
+
+function gameEnd(health) {
+    if (health <= 0) {
+        statusGame = 'finish';
+        mainScreen.style.display = 'none';
+        deleteObj();
+        mainAudio.pause();
+        endScreen.style.display = 'block';
+    }
+
+}
+
+function deleteObj() {
+    asteroid.remove();
+    player.remove();
+    score.remove();
+    indicator.remove();
 }

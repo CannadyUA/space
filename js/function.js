@@ -1,20 +1,17 @@
-//function collision() {
-//    let positionAst = ast.offsetLeft - ast.offsetWidth;
-//    let player = document.querySelector('.player');
-//    let positionPlayer = player.offsetLeft - player.offsetWidth;
+function collision(asteroid) {
+    positionAsteroid = asteroid.offsetLeft - asteroid.offsetWidth;
 
-//    if (ast.offsetLeft + ast.offsetWidth >= player.offsetLeft && ast.offsetLeft <= player.offsetLeft + player.offsetWidth) {
-//        if (ast.offsetTop >= player.offsetTop - player.offsetHeight && ast.offsetTop <= player.offsetTop) {
-//            health = document.querySelector('.health-bar');
-//            health.style.width = health.offsetWidth - 20 + 'px';
-//            gameEnd(health);
-//        }
-//    }
-//}
+    positionPlayer = player.offsetLeft - player.offsetWidth;
 
-//function gameEnd(health) {
-//    param = parseInt(health.style.width);
-//    if (param <= 0) {
-//        mainScreen.style.display = 'none';
-//    }
-//}
+    if (asteroid.offsetLeft + asteroid.offsetWidth >= player.offsetLeft && asteroid.offsetLeft <= player.offsetLeft + player.offsetWidth) {
+        if (asteroid.offsetTop >= player.offsetTop - player.offsetHeight && asteroid.offsetTop <= player.offsetTop) {
+            healthBar = document.querySelector('.health-bar');
+            param = parseInt(healthBar.style.width);
+            healthBar.style.width = healthBar.offsetWidth - 20 + 'px';
+            health = param - 20;
+            asteroid.remove();
+            createAsteroid();
+            gameEnd(health);
+        }
+    }
+}

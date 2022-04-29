@@ -1,15 +1,12 @@
 startBtn.onclick = function () {
+    statusGame = 'play';
     startScreen.style.display = 'none';
+    mainScreen.style.display = 'block';
     createScore();
     createHealth();
     createPlayer();
 
     mainAudio.play();
-    //setTimeout(function () {
-    //    ast.style.top = getRand(550, 600) + "px";
-    //    ast.style.left = getRand(300, 330) + "px";
-    //    collision();
-    //}, 200);
 
     createAsteroid();
 }
