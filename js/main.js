@@ -49,10 +49,11 @@ function createHealth() {
     mainScreen.appendChild(health);
 }
 
+
 function createAsteroid() {
-    asteroid = document.createElement("div");
+    let asteroid = document.createElement("div");
     asteroid.className = "enemy-1";
-    asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 15) + "px";
+    asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 50) + "px";
     mainScreen.appendChild(asteroid);
     moveAsteroid(asteroid);
 }
@@ -66,7 +67,7 @@ function moveAsteroid(asteroid) {
             //interval clearing
             clearInterval(timerID);
         }
-    }, 15);
+    }, 20);
 }
 
 function createBullet() {

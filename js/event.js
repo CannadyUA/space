@@ -4,13 +4,16 @@ startBtn.onclick = function () {
     createHealth();
     createBullet();
     mainAudio.play();
+    mainScreen.style.display = "block";
     //setTimeout(function () {
     //    ast.style.top = getRand(550, 600) + "px";
     //    ast.style.left = getRand(300, 330) + "px";
     //    collision();
     //}, 200);
-
     createAsteroid();
+    setTimeout(createAsteroid, 1000);
+    
+
 }
 
 document.onkeydown = function (e) {

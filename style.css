@@ -92,7 +92,6 @@ h6 {
 /*--------------------*/
 
 body {
-
     background: rgb(10, 31, 77);
     font-family: 'Press Start 2P', cursive;
     color: #fff;
@@ -141,7 +140,7 @@ body {
 .main {
     position: relative;
     overflow: hidden;
-
+    display: none;
 }
 
 .score {
@@ -177,7 +176,7 @@ body {
     width: 80px;
     height: 80px;
     position: absolute;
-    top: 0px;
+    top: -60px;
     left: 0px;
     background-image: url("./img/asteroid-icon3.png");
     animation: spin 5s linear 0s infinite;
