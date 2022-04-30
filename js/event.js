@@ -5,6 +5,9 @@ startBtn.onclick = function () {
     createUFO();
     createScore();
     createHealth();
+    createBullet();
+    mainAudio.play();
+    mainScreen.style.display = "block";
     createPlayer();
     mainAudio.play();
     mainAudio.loop = true;
@@ -13,8 +16,10 @@ startBtn.onclick = function () {
     //    ast.style.left = getRand(300, 330) + "px";
     //    collision();
     //}, 200);
-
     createAsteroid();
+    setTimeout(createAsteroid, 1500);
+    
+
 }
 
 document.onkeydown = function (e) {
@@ -29,6 +34,11 @@ document.onkeydown = function (e) {
             player.style.left = 5 + 'px';
         }
     }
+    //shot
+    if(e.keyCode == 32) {
+        createBullet();
+    }
+  } 
 }
 
 
