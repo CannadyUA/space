@@ -50,7 +50,7 @@ function createHealth() {
 }
 
 function createAsteroid() {
-    asteroid = document.createElement("div");
+    let asteroid = document.createElement("div");
     asteroid.className = "enemy-1";
     asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
     mainScreen.appendChild(asteroid);
@@ -83,24 +83,38 @@ function createBullet() {
 function moveBullet(bullet) {
     let timerID = setInterval(function() {
     bullet.style.top = bullet.offsetTop - 10 + "px";
-        if(bullet.offsetTop > mainScreen.clientHeight) {
+        if(bullet.offsetTop < 0) {
             //interval clearing
             bullet.remove();
             clfearInterval(timerID);
 
         }   
-        isBoom(bullet, asteroid);
+        isBoom(bullet);
     }, 10)
 }
+function createBoom(top, left) {
+    let boom = document.createElement("div");
+        boom.className = "boom";
+        boom.style.top = top - 10 + "px";
+        boom.style.left = left - 30 + "px";
+    mainScreen.appendChild(boom); 
 
-function isBoom(bullet, enemy) {
-    if(bullet.offsetTop > enemy.offsetTop
-        && bullet.offsetTop < enemy.offsetTop + enemy.clientHeight
-        && bullet.offsetLeft > enemy.offsetLeft) {
-            // createBoom(bullet.offsetTop, bullet.offsetLeft);
+    setTimeout(function() {
+        boom.remove();
+    }, 500);
+
+}
+
+function isBoom(bullet) {
+    let enemy = document.querySelector(".enemy-1");
+    if (enemy.offsetLeft + enemy.offsetWidth >= bullet.offsetLeft && enemy.offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
+        if (enemy.offsetTop >= bullet.offsetTop - bullet.offsetHeight && enemy.offsetTop <= bullet.offsetTop) { 
             bullet.remove();
+            createBoom(enemy.offsetTop, enemy.offsetLeft);
             enemy.remove();
             createAsteroid();
-             
+            // score.innerText = Number(score.innerText) + 10;
+            // addScores();
         }
+    }   
 }

@@ -114,11 +114,6 @@ body {
 }
 
 /*==================start block==============================*/
-.start {
-    /* display: none; */
-}
-
-
 
 .name {
     font-size: 50px;
@@ -176,12 +171,11 @@ body {
     background-color: #ff4037;
 }
 .boom {
-    top: 0;
-    left: 0;
+    z-index: 2;
     position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: rgb(255, 133, 46);
+    width: 140px;
+    height: 140px;
+    background: url("./img/boom.gif") no-repeat;
 }
 /*asteroid*/
 .enemy-1 {
@@ -217,7 +211,7 @@ body {
 
 .bullet {
     width: 6px;
-    height: 16px;
+    height: 25px;
     top: 658px;
     background: rgb(255, 233, 233); 
     position: absolute;
