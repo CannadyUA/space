@@ -103,14 +103,16 @@ body {
     position: relative;
     background: rgb(10, 31, 77);
 }
+
 ._block {
     width: 600px;
     height: 800px;
     background: url('img/bg3.gif');
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 50px auto;
+    margin: 0px auto;
     border: 10px ridge #fff;
+    overflow: hidden;
 }
 
 /*==================start block==============================*/
@@ -150,6 +152,7 @@ body {
     margin: 30px;
     left: 0;
     font-size: 23px;
+    z-index: 9;
 }
 
 .health-indicator {
@@ -162,6 +165,7 @@ body {
     overflow: hidden;
     position: absolute;
     right: 10px;
+    z-index: 9;
 }
 
 .health-bar {
@@ -170,6 +174,7 @@ body {
     width: 100%;
     background-color: #ff4037;
 }
+
 .boom {
     z-index: 2;
     position: absolute;
@@ -177,6 +182,28 @@ body {
     height: 140px;
     background: url("./img/boom.gif") no-repeat;
 }
+
+
+.boss-health {
+    width: 250px;
+    height: 25px;
+    border: 3px ridge #fff;
+    border-radius: 5px;
+    margin: 28px 10px 0px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    z-index: 9;
+}
+
+.boss-health-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #08f573;
+}
+
+
 /*asteroid*/
 .enemy-1 {
     z-index: 1;
@@ -229,6 +256,7 @@ body {
     background-image: url("./img/space-ship-pixel.gif");
     animation: levitation 3s;
 
+
 }
 @keyframes levitation {
     0% {
@@ -241,6 +269,35 @@ body {
         bottom: 30px;
     }
 }
+.boss {
+    width: 245px;
+    height: 100px;
+    background: url('img/ufo1.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: -150px;
+}
+
+.move-ufo {
+    animation-name: move-boss;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0s;
+}
+
+@keyframes move-boss {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 380px;
+    }
+}
+
 /*==================finish block==============================*/
 .finish {
     display: none;

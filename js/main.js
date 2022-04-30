@@ -6,13 +6,16 @@ player = null;
 numScores = 0;
 mainAudio = document.createElement('audio');
 mainAudio.src = 'audio/main.mp3';
+statusGame = 'open';
+
+bossFight = document.createElement('audio');
+bossFight.src = 'audio/fight.mp3';
 
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
 player = document.querySelector('.player');
 
-let ast = document.querySelector('.enemy-1');
 
 soundBtn = document.querySelector(".sound");
 isSound = false; //flag for checking
@@ -41,20 +44,34 @@ function createScore() {
 }
 
 function createHealth() {
-    health = document.createElement('div');
-    health.className = 'health-indicator';
+    indicator = document.createElement('div');
+    indicator.className = 'health-indicator';
     healthBar = document.createElement('div');
     healthBar.className = 'health-bar';
-    health.appendChild(healthBar);
-    mainScreen.appendChild(health);
+    indicator.appendChild(healthBar);
+    mainScreen.appendChild(indicator);
 }
+
+function createBossHealth() {
+    bossHealth = document.createElement('div');
+    bossHealth.className = 'boss-health';
+    bossBar = document.createElement('div');
+    bossBar.className = 'boss-health-bar';
+    bossHealth.appendChild(bossBar);
+    mainScreen.appendChild(bossHealth);
+}
+
 
 function createAsteroid() {
     let asteroid = document.createElement("div");
     asteroid.className = "enemy-1";
+
     asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
-    mainScreen.appendChild(asteroid);
-    moveAsteroid(asteroid);
+    if (statusGame !== 'finish') {
+        mainScreen.appendChild(asteroid);
+        moveAsteroid(asteroid);
+    }
+
 }
 
 function moveAsteroid(asteroid) {
@@ -91,6 +108,18 @@ function moveBullet(bullet) {
         }   
         isBoom(bullet);
     }, 10)
+        if (statusGame !== 'finish') {
+            collision(asteroid);
+        }
+    }, 15);
+
+}
+
+function createUFO() {
+    ufo = document.createElement('div');
+    ufo.className = 'boss';
+    ufo.style.left = getRand(0, 380) + 'px';
+    mainScreen.appendChild(ufo);           
 }
 function createBoom(top, left) {
     let boom = document.createElement("div");
@@ -117,4 +146,22 @@ function isBoom(bullet) {
             // addScores();
         }
     }   
+}
+
+function gameEnd(health) {
+    if (health <= 0) {
+        statusGame = 'finish';
+        mainScreen.style.display = 'none';
+        deleteObj();
+        mainAudio.pause();
+        endScreen.style.display = 'block';
+    }
+
+}
+
+function deleteObj() {
+    asteroid.remove();
+    player.remove();
+    score.remove();
+    indicator.remove();
 }
