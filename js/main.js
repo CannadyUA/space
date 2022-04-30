@@ -33,7 +33,6 @@ soundBtn.onclick = function () {
     }
 }
 
-
 function createScore() {
     score = document.createElement('div');
     score.className = 'score';
@@ -111,9 +110,6 @@ function moveBullet(bullet) {
         }
 
         isBoom(bullet);
-        //if (statusGame !== 'finish') {
-        //    collision(asteroid);
-        //}
     }, 15);
 }
 
@@ -137,20 +133,21 @@ function createBoom(top, left) {
 }
 
 function isBoom(bullet) {
-    let enemy = document.querySelector(".enemy-1");
-    if (enemy !== null) {
-        if (enemy.offsetLeft + enemy.offsetWidth >= bullet.offsetLeft && enemy.offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
-            if (enemy.offsetTop >= bullet.offsetTop - bullet.offsetHeight && enemy.offsetTop <= bullet.offsetTop) {
-                bullet.remove();
-                createBoom(enemy.offsetTop, enemy.offsetLeft);
-                enemy.remove();
-                createAsteroid();
-                // score.innerText = Number(score.innerText) + 10;
-                // addScores();
+    let enemy = document.querySelectorAll(".enemy-1");
+    for (i = 0; i < enemy.length; i++) {
+        if (enemy[i] !== null) {
+            if (enemy[i].offsetLeft + enemy[i].offsetWidth >= bullet.offsetLeft && enemy[i].offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
+                if (enemy[i].offsetTop >= bullet.offsetTop - bullet.offsetHeight && enemy[i].offsetTop <= bullet.offsetTop) {
+                    bullet.remove();
+                    createBoom(enemy[i].offsetTop, enemy[i].offsetLeft);
+                    enemy[i].remove();
+                    createAsteroid();
+                    // score.innerText = Number(score.innerText) + 10;
+                    // addScores();
+                }
             }
         }
     }
-
 }
 
 function gameEnd(health) {
