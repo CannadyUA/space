@@ -11,7 +11,7 @@ startBtn.onclick = function () {
     //    collision();
     //}, 200);
     createAsteroid();
-    setTimeout(createAsteroid, 1500);
+    setTimeout(createAsteroid, 2500);
     
 
 }

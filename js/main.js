@@ -68,7 +68,7 @@ function moveAsteroid(asteroid) {
             //interval clearing
             clearInterval(timerID);
         }
-    }, 20);
+    }, 25);
 }
 
 function createBullet() {
@@ -101,7 +101,7 @@ function createBoom(top, left) {
 
     setTimeout(function() {
         boom.remove();
-    }, 500);
+    }, 300);
 
 }
 
