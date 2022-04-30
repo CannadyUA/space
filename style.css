@@ -142,6 +142,7 @@ body {
 
 /*==================main block==============================*/
 .main {
+    display: none;
     position: relative;
     overflow: hidden;
 }
