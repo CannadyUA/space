@@ -61,7 +61,7 @@ function createBossHealth() {
 
 
 function createAsteroid() {
-    let asteroid = document.createElement("div");
+    asteroid = document.createElement("div");
     asteroid.className = "enemy-1";
     asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
 
@@ -72,7 +72,7 @@ function createAsteroid() {
 }
 
 function moveAsteroid(asteroid) {
-    let timerID = setInterval(function () {
+    timerID = setInterval(function () {
         asteroid.style.top = asteroid.offsetTop + 5 + "px";
         //console.dir(asteroid.offsetTop);
         if (asteroid.offsetTop > mainScreen.clientHeight) {
@@ -90,7 +90,7 @@ function moveAsteroid(asteroid) {
 }
 
 function createBullet() {
-    let bullet = document.createElement("div");
+    bullet = document.createElement("div");
     bullet.className = "bullet";
     mainScreen.appendChild(bullet);
     bullet.style.left = player.offsetLeft + 49 + "px";
@@ -99,7 +99,7 @@ function createBullet() {
 }
 
 function moveBullet(bullet) {
-    let timerID = setInterval(function () {
+    timerID = setInterval(function () {
         bullet.style.top = bullet.offsetTop - 10 + "px";
         if (bullet.offsetTop < 0) {
             //interval clearing
@@ -118,7 +118,7 @@ function createUFO() {
     mainScreen.appendChild(ufo);
 }
 function createBoom(top, left) {
-    let boom = document.createElement("div");
+    boom = document.createElement("div");
     boom.className = "boom";
     boom.style.top = top - 10 + "px";
     boom.style.left = left - 30 + "px";
@@ -131,7 +131,7 @@ function createBoom(top, left) {
 }
 
 function isBoom(bullet) {
-    let enemy = document.querySelectorAll(".enemy-1");
+    enemy = document.querySelectorAll(".enemy-1");
     for (i = 0; i < enemy.length; i++) {
         if (enemy[i] !== null) {
             if (enemy[i].offsetLeft + enemy[i].offsetWidth >= bullet.offsetLeft && enemy[i].offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
@@ -156,6 +156,7 @@ function gameEnd(health) {
         deleteObj();
         mainAudio.pause();
         endScreen.style.display = 'block';
+        
     }
 
 }
