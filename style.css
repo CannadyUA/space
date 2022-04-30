@@ -113,14 +113,10 @@ body {
     background-size: cover;
     margin: 0px auto;
     border: 10px ridge #fff;
+    overflow: hidden;
 }
 
 /*==================start block==============================*/
-.start {
-    /* display: none; */
-}
-
-
 
 .name {
     font-size: 50px;
@@ -146,7 +142,6 @@ body {
 
 /*==================main block==============================*/
 .main {
-    display: none;
     position: relative;
     overflow: hidden;
 }
@@ -157,6 +152,7 @@ body {
     margin: 30px;
     left: 0;
     font-size: 23px;
+    z-index: 9;
 }
 
 .health-indicator {
@@ -169,6 +165,7 @@ body {
     overflow: hidden;
     position: absolute;
     right: 10px;
+    z-index: 9;
 }
 
 .health-bar {
@@ -179,13 +176,33 @@ body {
 }
 
 .boom {
-    top: 0;
-    left: 0;
+    z-index: 2;
     position: absolute;
-    width: 100px;
-    height: 100px;
-    background-color: rgb(255, 133, 46);
+    width: 140px;
+    height: 140px;
+    background: url("./img/boom.gif") no-repeat;
 }
+
+
+.boss-health {
+    width: 250px;
+    height: 25px;
+    border: 3px ridge #fff;
+    border-radius: 5px;
+    margin: 28px 10px 0px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    z-index: 9;
+}
+
+.boss-health-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #08f573;
+}
+
 
 /*asteroid*/
 .enemy-1 {
@@ -221,7 +238,7 @@ body {
 
 .bullet {
     width: 6px;
-    height: 16px;
+    height: 25px;
     top: 658px;
     background: rgb(255, 233, 233);
     position: absolute;
@@ -263,6 +280,34 @@ body {
     }
 }
 
+.boss {
+    width: 245px;
+    height: 100px;
+    background: url('img/ufo1.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: -150px;
+}
+
+.move-ufo {
+    animation-name: move-boss;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0s;
+}
+
+@keyframes move-boss {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 380px;
+    }
+}
 
 /*==================finish block==============================*/
 .finish {
