@@ -8,6 +8,9 @@ mainAudio = document.createElement('audio');
 mainAudio.src = 'audio/main.mp3';
 statusGame = 'open';
 
+bossFight = document.createElement('audio');
+bossFight.src = 'audio/fight.mp3';
+
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
@@ -30,6 +33,16 @@ function createHealth() {
     indicator.appendChild(healthBar);
     mainScreen.appendChild(indicator);
 }
+
+function createBossHealth() {
+    bossHealth = document.createElement('div');
+    bossHealth.className = 'boss-health';
+    bossBar = document.createElement('div');
+    bossBar.className = 'boss-health-bar';
+    bossHealth.appendChild(bossBar);
+    mainScreen.appendChild(bossHealth);
+}
+
 
 function createAsteroid() {
     asteroid = document.createElement("div");
@@ -59,7 +72,10 @@ function moveAsteroid(asteroid) {
 }
 
 function createUFO() {
-
+    ufo = document.createElement('div');
+    ufo.className = 'boss';
+    ufo.style.left = getRand(0, 380) + 'px';
+    mainScreen.appendChild(ufo);           
 }
 
 function createPlayer() {
