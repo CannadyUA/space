@@ -36,7 +36,7 @@ soundBtn.onclick = function () {
 function createScore() {
     score = document.createElement('div');
     score.className = 'score';
-    score.innerText = 'SCORE:' + numScores;
+    score.innerText = 'SCORE: ' + numScores;
     mainScreen.appendChild(score);
     gameBlock = document.querySelector('._block');
 }
@@ -99,7 +99,6 @@ function createBullet() {
 }
 
 function moveBullet(bullet) {
-
     let timerID = setInterval(function () {
         bullet.style.top = bullet.offsetTop - 10 + "px";
         if (bullet.offsetTop < 0) {
@@ -108,7 +107,6 @@ function moveBullet(bullet) {
             clearInterval(timerID);
 
         }
-
         isBoom(bullet);
     }, 15);
 }
@@ -142,8 +140,9 @@ function isBoom(bullet) {
                     createBoom(enemy[i].offsetTop, enemy[i].offsetLeft);
                     enemy[i].remove();
                     createAsteroid();
-                    // score.innerText = Number(score.innerText) + 10;
-                    // addScores();
+                    numScores = numScores + 10;
+                    score.remove();
+                    createScore();
                 }
             }
         }
@@ -162,7 +161,6 @@ function gameEnd(health) {
 }
 
 function deleteObj() {
-
     player.remove();
     score.remove();
     indicator.remove();
