@@ -4,10 +4,10 @@ startBtn.onclick = function () {
     mainScreen.style.display = 'block';
     createScore();
     createHealth();
-    createBullet();
     mainAudio.play();
     mainScreen.style.display = "block";
-    setTimeout(createAsteroid, 1500);
+    setInterval(createAsteroid, 2500);
+    // createBullet();
 }
 
 document.onkeydown = function (e) {

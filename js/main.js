@@ -13,7 +13,6 @@ function getRand(min, max) {
 }
 player = document.querySelector('.player');
 
-
 soundBtn = document.querySelector(".sound");
 isSound = false; //flag for checking
 soundBtn.onclick = function () {
@@ -62,7 +61,7 @@ function createAsteroid() {
 function moveAsteroid(asteroid) {
     let timerID = setInterval(function () {
         asteroid.style.top = asteroid.offsetTop + 5 + "px";
-        console.dir(asteroid.offsetTop);
+        //console.dir(asteroid.offsetTop);
         if (asteroid.offsetTop > mainScreen.clientHeight) {
             asteroid.remove();
             createAsteroid();
@@ -87,15 +86,21 @@ function createBullet() {
 }
 
 function moveBullet(bullet) {
+    asteroid = document.querySelector('.enemy-1');
+
     let timerID = setInterval(function () {
         bullet.style.top = bullet.offsetTop - 10 + "px";
         if (bullet.offsetTop > mainScreen.clientHeight) {
             //interval clearing
             bullet.remove();
-            clfearInterval(timerID);
+            clearInterval(timerID);
 
         }
-        isBoom(bullet, asteroid);
+
+        if (asteroid !== null) {
+            isBoom(bullet, asteroid);
+        }
+
     }, 10)
 }
 
