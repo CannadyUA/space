@@ -11,6 +11,7 @@ startBtn.onclick = function () {
     mainAudio.loop = true;
     setInterval(createAsteroid, delay);
     setInterval(createAsteroidBig, longDelay);
+    setInterval(createHeart, 30000);
 }
 
 soundBtn.onclick = function () {

@@ -13,6 +13,7 @@ mainAudio.src = 'audio/main.mp3';
 soundBtn = document.querySelector(".sound");
 statusGame = 'open';
 isSound = false; //flag for checking
+shotCount = 0;
 
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
@@ -99,7 +100,7 @@ function moveAsteroid(asteroid, speed) {
 function createHeart() {
     heart = document.createElement('div');
     heart.className = 'heart';
-    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
     mainScreen.appendChild(heart);
     moveHeart();
 }
@@ -113,11 +114,9 @@ function moveHeart() {
             clearInterval(timerID);
         }
 
-
         if (statusGame !== 'finish') {
-
             if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
-                if (heart.offsetTop >= player.offsetTop - player.offsetHeight && heart.offsetTop <= player.offsetTop) {
+                if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 50 && heart.offsetTop <= player.offsetTop) {
                     if (parseInt(healthBar.style.width) < 244) {
                         healthBar.style.width = healthBar.offsetWidth + 20 + 'px';
                     }
@@ -183,9 +182,8 @@ function createBoom(top, left, boomType) {
 
 }
 
-function gameEnd() {
-    param = parseInt(healthBar.style.width);
-    if (param <= 0) {
+function gameEnd(health) {
+    if (health <= 0) {
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
