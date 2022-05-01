@@ -14,8 +14,6 @@ function collision(asteroid, healthValue) {
             setTimeout(function () { player.classList.remove('blink'); }, 1000);
             gameEnd();
 
-            // createAsteroid();
-
         }
     }
 }
@@ -46,7 +44,6 @@ function isBoom(bullet) {
 
                     score.remove();
                     createScore();
-                    //checkScore();
                 }
             }
         }
