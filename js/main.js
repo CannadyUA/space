@@ -140,7 +140,7 @@ function createUFO() {
     ufo.style.left = getRand(0, 380) + 'px';
     mainScreen.appendChild(ufo);
 }
-boomSize = null;
+
 function createBoom(top, left, boomType) {
     let boom = document.createElement("div");
     boom.className = boomType;
@@ -149,8 +149,8 @@ function createBoom(top, left, boomType) {
         boom.style.left = left - 30 + "px";
     }
     else if(boomType == "bigBoom") {
-        boom.style.top = top - 130 + "px";
-        boom.style.left = left - 120 + "px";
+        boom.style.top = top - 90 + "px";
+        boom.style.left = left - 90 + "px";
     }
     
     mainScreen.appendChild(boom);

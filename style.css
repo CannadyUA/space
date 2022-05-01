@@ -184,6 +184,7 @@ body {
     background: url("./img/boom.gif") no-repeat;
 }
 .bigBoom {
+    background-color: #fff;
     z-index: 2;
     position: absolute;
     width: 400px;
@@ -238,7 +239,7 @@ body {
     z-index: 1;
     width: 150px;
     height: 113px;
-    /* background: brown; */
+    background: brown;
     position: absolute;
     top: -150px;
     left: 0px;
