@@ -258,14 +258,6 @@ body {
     animation: levitation 3s;
 }
 
-.heart {
-    background-image: url('./img/heart.png');
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    background-size: contain;
-}
-
 
 @keyframes levitation {
     0% {
@@ -278,6 +270,32 @@ body {
 
     100% {
         bottom: 30px;
+    }
+}
+
+.heart {
+    background-image: url('./img/heart.png');
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    background-size: contain;
+    animation: pulses 1s infinite ease-in-out;
+}
+
+@keyframes pulses {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
     }
 }
 

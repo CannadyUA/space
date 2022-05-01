@@ -11,6 +11,21 @@ startBtn.onclick = function () {
     setTimeout(createAsteroid, 1500);
 }
 
+soundBtn.onclick = function () {
+    if (isSound == true) {
+        mainAudio.play(); //audio start 
+        mainAudio.volume = 1;
+        isSound = false;
+        soundBtn.style.color = "white";
+
+    }
+    else {
+        isSound = true;
+        mainAudio.volume = 0; //mute audio
+        soundBtn.style.color = "gray";
+    }
+}
+
 document.onkeydown = function (e) {
     if (e.keyCode == 39) {
         player.style.left = player.offsetLeft + 70 + 'px';

@@ -1,36 +1,20 @@
+//variables
 startBtn = document.querySelector('#start-btn');
 startScreen = document.querySelector('.start');
 mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
-player = null;
 numScores = 0;
-mainAudio = document.createElement('audio');
-mainAudio.src = 'audio/main.mp3';
-statusGame = 'open';
-
+player = document.querySelector('.player');
 bossFight = document.createElement('audio');
 bossFight.src = 'audio/fight.mp3';
+mainAudio = document.createElement('audio');
+mainAudio.src = 'audio/main.mp3';
+soundBtn = document.querySelector(".sound");
+statusGame = 'open';
+isSound = false; //flag for checking
 
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
-}
-player = document.querySelector('.player');
-
-soundBtn = document.querySelector(".sound");
-isSound = false; //flag for checking
-soundBtn.onclick = function () {
-    if (isSound == true) {
-        mainAudio.play(); //audio start 
-        mainAudio.volume = 1;
-        isSound = false;
-        soundBtn.style.color = "white";
-
-    }
-    else {
-        isSound = true;
-        mainAudio.volume = 0; //mute audio
-        soundBtn.style.color = "gray";
-    }
 }
 
 function createScore() {
@@ -89,6 +73,40 @@ function moveAsteroid(asteroid) {
     }, 20);
 }
 
+function createHeart() {
+    heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
+    mainScreen.appendChild(heart);
+    moveHeart();
+}
+
+function moveHeart() {
+    let timerID = setInterval(function () {
+        heart.style.top = heart.offsetTop + 5 + "px";
+        //console.dir(asteroid.offsetTop);
+        if (heart.offsetTop > mainScreen.clientHeight) {
+            heart.remove();
+        }
+
+
+        if (statusGame !== 'finish') {
+
+            if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
+                if (heart.offsetTop >= player.offsetTop - player.offsetHeight && heart.offsetTop <= player.offsetTop) {
+
+                    if (parseInt(healthBar.style.width) < 244) {
+                        healthBar.style.width = healthBar.offsetWidth + 20 + 'px';
+                    }
+                    heart.remove();
+                    //interval clearing
+                    clearInterval(timerID);
+                }
+            }
+        }
+    }, 40);
+}
+
 function createBullet() {
     let bullet = document.createElement("div");
     bullet.className = "bullet";
@@ -130,27 +148,10 @@ function createBoom(top, left) {
 
 }
 
-function isBoom(bullet) {
-    let enemy = document.querySelectorAll(".enemy-1");
-    for (i = 0; i < enemy.length; i++) {
-        if (enemy[i] !== null) {
-            if (enemy[i].offsetLeft + enemy[i].offsetWidth >= bullet.offsetLeft && enemy[i].offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
-                if (enemy[i].offsetTop >= bullet.offsetTop - bullet.offsetHeight && enemy[i].offsetTop <= bullet.offsetTop) {
-                    bullet.remove();
-                    createBoom(enemy[i].offsetTop, enemy[i].offsetLeft);
-                    enemy[i].remove();
-                    createAsteroid();
-                    numScores = numScores + 10;
-                    score.remove();
-                    createScore();
-                }
-            }
-        }
-    }
-}
 
-function gameEnd(health) {
-    if (health <= 0) {
+function gameEnd() {
+    param = parseInt(healthBar.style.width);
+    if (param <= 0) {
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
