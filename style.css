@@ -276,9 +276,11 @@ body {
     color: #000;
     transition: all 0.3s;
     background-image: url("./img/space-ship-pixel.gif");
-    animation: levitation 3s;
 }
 
+.levitation {
+    animation: levitation 3s;
+}
 
 @keyframes levitation {
     0% {
@@ -295,7 +297,7 @@ body {
 }
 
 .blink {
-    animation: blink 0.5s step-start 0s infinite;
+    animation: blink 0.2s step-start 0s infinite;
 }
 
 @keyframes blink {

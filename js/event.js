@@ -3,6 +3,7 @@ startBtn.onclick = function () {
     statusGame = 'play';
     startScreen.style.display = 'none';
     createPlayer();
+    player.classList.add('levitation');
     createUFO();
     createScore();
     createHealth();
