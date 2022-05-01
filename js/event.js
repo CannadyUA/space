@@ -11,6 +11,22 @@ startBtn.onclick = function () {
     mainAudio.loop = true;
     setInterval(createAsteroid, delay);
     setInterval(createAsteroidBig, longDelay);
+    setInterval(createHeart, 30000);
+}
+
+soundBtn.onclick = function () {
+    if (isSound == true) {
+        mainAudio.play(); //audio start 
+        mainAudio.volume = 1;
+        isSound = false;
+        soundBtn.style.color = "white";
+
+    }
+    else {
+        isSound = true;
+        mainAudio.volume = 0; //mute audio
+        soundBtn.style.color = "gray";
+    }
 }
 
 
