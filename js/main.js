@@ -59,7 +59,7 @@ function createAsteroid() {
 
     if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroid);
-        moveAsteroid(asteroid, 5);
+        moveAsteroid(asteroid, 15);
     }
 }
 
@@ -70,7 +70,7 @@ function createAsteroidBig() {
 
     if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroidBig);
-        moveAsteroid(asteroidBig, 10);
+        moveAsteroid(asteroidBig, 20);
     }
 }
 
