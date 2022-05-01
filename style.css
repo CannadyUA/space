@@ -176,7 +176,7 @@ body {
     background-color: #ff4037;
 }
 
-.boom {
+.smallBoom {
     z-index: 2;
     position: absolute;
     width: 140px;
@@ -184,6 +184,23 @@ body {
     background: url("./img/boom.gif") no-repeat;
 }
 
+.bigBoom {
+    background-color: #fff;
+    z-index: 2;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: url("./img/big-boom.gif") no-repeat;
+}
+
+.boomAsteroid {
+    z-index: 2;
+    position: absolute;
+    width: 150px;
+    height: 200px;
+    background: url("./img/boom-6.gif") no-repeat;
+    background-size: cover;
+}
 
 .boss-health {
     width: 250px;
@@ -214,7 +231,7 @@ body {
     top: -60px;
     left: 0px;
     background-image: url("./img/asteroid-icon3.png");
-    animation: spin 5s linear 0s infinite;
+    animation: spin 3s linear 0s infinite;
 }
 
 @keyframes spin {
@@ -229,12 +246,16 @@ body {
 
 /*UFO*/
 .enemy-2 {
-    width: 40px;
-    height: 40px;
+    z-index: 1;
+    width: 150px;
+    height: 113px;
     background: brown;
     position: absolute;
-    top: 0px;
+    top: -150px;
     left: 0px;
+    background: url("./img/big-asteroid.png") no-repeat;
+    animation: spin 5s linear 0s infinite;
+
 }
 
 .bullet {
@@ -270,6 +291,16 @@ body {
 
     100% {
         bottom: 30px;
+    }
+}
+
+.blink {
+    animation: blink 0.5s step-start 0s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0.0;
     }
 }
 

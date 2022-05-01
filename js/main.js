@@ -1,5 +1,6 @@
 //variables
 startBtn = document.querySelector('#start-btn');
+againBtn = document.querySelector('.again-btn');
 startScreen = document.querySelector('.start');
 mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
@@ -43,6 +44,14 @@ function createBossHealth() {
     mainScreen.appendChild(bossHealth);
 }
 
+function createPlayer() {
+    player = document.createElement("div");
+    player.className = "player";
+    mainScreen.appendChild(player);
+}
+
+delay = getRand(2000, 3000); //затримка для астероїдів
+longDelay = getRand(3500, 5000);
 
 function createAsteroid() {
     let asteroid = document.createElement("div");
@@ -51,26 +60,40 @@ function createAsteroid() {
 
     if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroid);
-        moveAsteroid(asteroid);
+        moveAsteroid(asteroid, 20);
     }
 }
 
-function moveAsteroid(asteroid) {
+function createAsteroidBig() {
+    let asteroidBig = document.createElement("div");
+    asteroidBig.className = "enemy-2";
+    asteroidBig.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 110) + "px";
+
+    if (statusGame !== 'finish') {
+        mainScreen.appendChild(asteroidBig);
+        moveAsteroid(asteroidBig, 30);
+    }
+}
+
+function moveAsteroid(asteroid, speed) {
     let timerID = setInterval(function () {
         asteroid.style.top = asteroid.offsetTop + 5 + "px";
+
         //console.dir(asteroid.offsetTop);
         if (asteroid.offsetTop > mainScreen.clientHeight) {
             asteroid.remove();
-            createAsteroid();
-
             //interval clearing
             clearInterval(timerID);
         }
 
         if (statusGame !== 'finish') {
-            collision(asteroid);
+            if (asteroid.className == "enemy-1") {
+                collision(asteroid, 20);
+            } else if (asteroid.className == "enemy-2") {
+                collision(asteroid, 50);
+            }
         }
-    }, 20);
+    }, speed);
 }
 
 function createHeart() {
@@ -87,6 +110,7 @@ function moveHeart() {
         //console.dir(asteroid.offsetTop);
         if (heart.offsetTop > mainScreen.clientHeight) {
             heart.remove();
+            clearInterval(timerID);
         }
 
 
@@ -94,7 +118,6 @@ function moveHeart() {
 
             if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
                 if (heart.offsetTop >= player.offsetTop - player.offsetHeight && heart.offsetTop <= player.offsetTop) {
-
                     if (parseInt(healthBar.style.width) < 244) {
                         healthBar.style.width = healthBar.offsetWidth + 20 + 'px';
                     }
@@ -104,11 +127,11 @@ function moveHeart() {
                 }
             }
         }
-    }, 40);
+    }, 20);
 }
 
 function createBullet() {
-    let bullet = document.createElement("div");
+    bullet = document.createElement("div");
     bullet.className = "bullet";
     mainScreen.appendChild(bullet);
     bullet.style.left = player.offsetLeft + 49 + "px";
@@ -135,19 +158,30 @@ function createUFO() {
     ufo.style.left = getRand(0, 380) + 'px';
     mainScreen.appendChild(ufo);
 }
-function createBoom(top, left) {
+
+function createBoom(top, left, boomType) {
     let boom = document.createElement("div");
-    boom.className = "boom";
-    boom.style.top = top - 10 + "px";
-    boom.style.left = left - 30 + "px";
+    boom.className = boomType;
+    if (boomType == "smallBoom") {
+        boom.style.top = top - 10 + "px";
+        boom.style.left = left - 30 + "px";
+    }
+    else if (boomType == "bigBoom") {
+        boom.style.top = top - 90 + "px";
+        boom.style.left = left - 90 + "px";
+    }
+    else if (boomType == 'boomAsteroid') {
+        boom.style.top = top - 10 + "px";
+        boom.style.left = left - 30 + "px";
+    }
+
     mainScreen.appendChild(boom);
 
     setTimeout(function () {
         boom.remove();
-    }, 500);
+    }, 600);
 
 }
-
 
 function gameEnd() {
     param = parseInt(healthBar.style.width);
@@ -157,8 +191,10 @@ function gameEnd() {
         deleteObj();
         mainAudio.pause();
         endScreen.style.display = 'block';
+        againBtn.onclick = function () {
+            location.reload();
+        }
     }
-
 }
 
 function deleteObj() {
