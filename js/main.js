@@ -51,8 +51,6 @@ function createPlayer() {
     mainScreen.appendChild(player);
 }
 
-delay = getRand(2000, 3000); //затримка для астероїдів
-longDelay = getRand(3500, 5000);
 
 function createAsteroid() {
     let asteroid = document.createElement("div");
@@ -61,7 +59,7 @@ function createAsteroid() {
 
     if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroid);
-        moveAsteroid(asteroid, 20);
+        moveAsteroid(asteroid, 15);
     }
 }
 
@@ -72,7 +70,7 @@ function createAsteroidBig() {
 
     if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroidBig);
-        moveAsteroid(asteroidBig, 30);
+        moveAsteroid(asteroidBig, 20);
     }
 }
 
@@ -182,16 +180,34 @@ function createBoom(top, left, boomType) {
 
 }
 
+
+
 function gameEnd(health) {
-    if (health <= 0) {
+    if (health <= 14) {
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
         mainAudio.pause();
         endScreen.style.display = 'block';
+
         againBtn.onclick = function () {
-            location.reload();
+            statusGame = 'play';
+            endScreen.style.display = 'none';
+            createPlayer();
+            player.classList.add('levitation');
+            createUFO();
+            createScore();
+            createHealth();
+            mainScreen.style.display = "block";
+            mainAudio.play();
+            mainAudio.loop = true;
+            delay = getRand(2000, 3000); //затримка для астероїдів
+            longDelay = getRand(3500, 5000);
+            setInterval(createAsteroid, delay);
+            setInterval(createAsteroidBig, longDelay);
+            setInterval(createHeart, 30000);
         }
+
     }
 }
 
