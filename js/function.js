@@ -11,6 +11,7 @@ function collision(asteroid, healthValue) {
             createBoom(asteroid.offsetTop, asteroid.offsetLeft, 'boomAsteroid');
             asteroid.remove();
             player.classList.add('blink');
+            player.classList.remove('levitation');
             setTimeout(function () { player.classList.remove('blink'); }, 1000);
             gameEnd();
 
