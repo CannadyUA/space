@@ -1,15 +1,18 @@
+
 startBtn.onclick = function () {
     statusGame = 'play';
     startScreen.style.display = 'none';
+    createPlayer();
     createUFO();
     createScore();
     createHealth();
     mainScreen.style.display = "block";
     mainAudio.play();
     mainAudio.loop = true;
-    createAsteroid();
-    setTimeout(createAsteroid, 1500);
+    setInterval(createAsteroid, delay);
+    setInterval(createAsteroidBig, longDelay);
 }
+
 
 document.onkeydown = function (e) {
     if (e.keyCode == 39) {
