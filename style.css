@@ -94,23 +94,26 @@ h6 {
 body {
     font-family: 'Press Start 2P', cursive;
     color: #fff;
-
 }
+
 .gameBlock {
+    padding-top: 50px;
     padding: 30px;
     min-width: 100%;
     min-height: 100%;
     position: relative;
     background: rgb(10, 31, 77);
 }
+
 ._block {
     width: 600px;
     height: 800px;
     background: url('img/bg3.gif');
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 50px auto;
+    margin: 0px auto;
     border: 10px ridge #fff;
+    overflow: hidden;
 }
 
 /*==================start block==============================*/
@@ -139,9 +142,9 @@ body {
 
 /*==================main block==============================*/
 .main {
+    display: none;
     position: relative;
     overflow: hidden;
-    display: none;
 }
 
 .score {
@@ -150,6 +153,7 @@ body {
     margin: 30px;
     left: 0;
     font-size: 23px;
+    z-index: 9;
 }
 
 .health-indicator {
@@ -162,6 +166,7 @@ body {
     overflow: hidden;
     position: absolute;
     right: 10px;
+    z-index: 9;
 }
 
 .health-bar {
@@ -170,13 +175,43 @@ body {
     width: 100%;
     background-color: #ff4037;
 }
-.boom {
+
+.smallBoom {
     z-index: 2;
     position: absolute;
     width: 140px;
     height: 140px;
     background: url("./img/boom.gif") no-repeat;
 }
+.bigBoom {
+    background-color: #fff;
+    z-index: 2;
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: url("./img/big-boom.gif") no-repeat;
+}
+
+.boss-health {
+    width: 250px;
+    height: 25px;
+    border: 3px ridge #fff;
+    border-radius: 5px;
+    margin: 28px 10px 0px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    z-index: 9;
+}
+
+.boss-health-bar {
+    height: 100%;
+    width: 100%;
+    background-color: #08f573;
+}
+
+
 /*asteroid*/
 .enemy-1 {
     z-index: 1;
@@ -186,7 +221,7 @@ body {
     top: -60px;
     left: 0px;
     background-image: url("./img/asteroid-icon3.png");
-    animation: spin 5s linear 0s infinite;
+    animation: spin 3s linear 0s infinite;
 }
 
 @keyframes spin {
@@ -201,23 +236,27 @@ body {
 
 /*UFO*/
 .enemy-2 {
-    width: 40px;
-    height: 40px;
+    z-index: 1;
+    width: 150px;
+    height: 113px;
     background: brown;
     position: absolute;
-    top: 0px;
+    top: -150px;
     left: 0px;
+    background: url("./img/big-asteroid.png") no-repeat;
+    animation: spin 5s linear 0s infinite;
+
 }
 
 .bullet {
     width: 6px;
     height: 25px;
     top: 658px;
-    background: rgb(255, 233, 233); 
+    background: rgb(255, 233, 233);
     position: absolute;
     box-shadow: 0 0 5px rgb(255, 123, 121), 0 0 8px rgb(255, 42, 78), 0 0 12px rgb(255, 34, 38), 0 0 15px rgb(255, 3, 41), 0 0 25px rgb(140, 0, 255);
-
 }
+
 .player {
     position: absolute;
     width: 100px;
@@ -228,19 +267,60 @@ body {
     transition: all 0.3s;
     background-image: url("./img/space-ship-pixel.gif");
     animation: levitation 3s;
-
 }
+
+.heart {
+    background-image: url('./img/heart.png');
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    background-size: contain;
+}
+
+
 @keyframes levitation {
     0% {
         bottom: -150px;
     }
+
     50% {
         bottom: 40px;
-    }   
+    }
+
     100% {
         bottom: 30px;
     }
 }
+
+.boss {
+    width: 245px;
+    height: 100px;
+    background: url('img/ufo1.png');
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: -150px;
+}
+
+.move-ufo {
+    animation-name: move-boss;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-delay: 0s;
+}
+
+@keyframes move-boss {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 380px;
+    }
+}
+
 /*==================finish block==============================*/
 .finish {
     display: none;
