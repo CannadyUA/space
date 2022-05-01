@@ -161,6 +161,7 @@ function createBoom(top, left, boomType) {
 
 }
 
+shotCount = 0;
 function isBoom(bullet) {
     let enemy = document.querySelectorAll(".enemy-1, .enemy-2");
     for (i = 0; i < enemy.length; i++) {
@@ -170,13 +171,20 @@ function isBoom(bullet) {
                     bullet.remove();
                     if(enemy[i].className == "enemy-1") {
                         createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "smallBoom");
-                        numScores = numScores + 10;
                         enemy[i].remove();
+                        numScores = numScores + 10;
                     }
+
                     else if(enemy[i].className == "enemy-2") {
                         createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "bigBoom");
-                        numScores = numScores + 40;
+                        shotCount = shotCount + 1;
+                        if(shotCount == 2) {
+                            enemy[i].remove();
+                            numScores = numScores + 20;
+                            shotCount = 0;
+                        }
                     }
+
                     score.remove();
                     createScore();
                 }
