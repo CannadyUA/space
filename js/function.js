@@ -13,7 +13,8 @@ function collision(asteroid, healthValue) {
             player.classList.add('blink');
             player.classList.remove('levitation');
             setTimeout(function () { player.classList.remove('blink'); }, 1000);
-            gameEnd();
+            console.log(param);
+            gameEnd(param);
 
         }
     }

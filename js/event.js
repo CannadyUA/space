@@ -10,6 +10,8 @@ startBtn.onclick = function () {
     mainScreen.style.display = "block";
     mainAudio.play();
     mainAudio.loop = true;
+    delay = getRand(2000, 3000); //затримка для астероїдів
+    longDelay = getRand(3500, 5000);
     setInterval(createAsteroid, delay);
     setInterval(createAsteroidBig, longDelay);
     setInterval(createHeart, 30000);
