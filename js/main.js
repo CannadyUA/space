@@ -162,35 +162,23 @@ function createBoom(top, left, boomType) {
 }
 
 function isBoom(bullet) {
-    let enemy = document.querySelectorAll(".enemy-1");
-    let enemy2 = document.querySelectorAll(".enemy-2");
-
+    let enemy = document.querySelectorAll(".enemy-1, .enemy-2");
     for (i = 0; i < enemy.length; i++) {
         if (enemy[i] !== null) {
             if (enemy[i].offsetLeft + enemy[i].offsetWidth >= bullet.offsetLeft && enemy[i].offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
                 if (enemy[i].offsetTop >= bullet.offsetTop - bullet.offsetHeight && enemy[i].offsetTop <= bullet.offsetTop) {
                     bullet.remove();
-                    createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "smallBoom");
-                    enemy[i].remove();
-                    numScores = numScores + 10;
+                    if(enemy[i].className == "enemy-1") {
+                        createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "smallBoom");
+                        numScores = numScores + 10;
+                        enemy[i].remove();
+                    }
+                    else if(enemy[i].className == "enemy-2") {
+                        createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "bigBoom");
+                        numScores = numScores + 40;
+                    }
                     score.remove();
                     createScore();
-                }
-            }
-        }
-    }
-
-    for (i = 0; i < enemy2.length; i++) {
-        if (enemy2[i] !== null) {
-            if (enemy2[i].offsetLeft + enemy2[i].offsetWidth >= bullet.offsetLeft && enemy2[i].offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
-                if (enemy2[i].offsetTop >= bullet.offsetTop - bullet.offsetHeight && enemy2[i].offsetTop <= bullet.offsetTop) {
-                    bullet.remove();
-                    createBoom(enemy2[i].offsetTop, enemy2[i].offsetLeft, "bigBoom");
-                    enemy2[i].remove();
-                    numScores = numScores + 10;
-                    score.remove();
-                    createScore();
-
                 }
             }
         }
