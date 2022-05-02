@@ -1,3 +1,5 @@
+
+
 startBtn.onclick = function () {
     startScreen.style.display = 'none';
     startGame();
@@ -48,3 +50,4 @@ document.onkeydown = function (e) {
                 createBullet();
         }
 }
+

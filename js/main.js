@@ -5,23 +5,38 @@ startScreen = document.querySelector('.start');
 mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
 winScreen = document.querySelector('.win');
-numScores = 0;
 player = document.querySelector('.player');
+soundBtn = document.querySelector(".sound");
+
+statusGame = 'open';
+
+isSound = false;
+isBoss = false;
+
+//counters
+numScores = 0;
+shotCount = 0; 
+
+//sounds
 bossFight = document.createElement('audio');
 bossFight.src = 'audio/fight.mp3';
+
 mainAudio = document.createElement('audio');
 mainAudio.src = 'audio/main.mp3';
-soundBtn = document.querySelector(".sound");
-statusGame = 'open';
-isSound = false; //flag for checking
-shotCount = 0; //number of bullet 
-isBoss = false;
+
+winSound = document.createElement('audio');
+winSound.src = 'audio/win-game.wav';
+
+gameOver = document.createElement('audio');
+gameOver.src = 'audio/game-over.wav';
+
 
 //helping function
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+//main functions
 function startGame() {
     statusGame = 'play';
     startScreen.style.display = 'none';
@@ -269,9 +284,7 @@ function gameEnd(health) {
         deleteObj();
         mainAudio.pause();
         bossFight.pause();
-        gameOverSound = document.createElement('audio');
-        gameOverSound.src = 'audio/game-over.mp3';
-        gameOverSound.play();
+        gameOver.play();
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
@@ -287,8 +300,6 @@ function winner() {
     winScreen.style.display = 'block';
     bossFight.pause();
     console.log(againBtn);
-    winSound = document.createElement('audio');
-    winSound.src = "audio/win-game.wav";
     winSound.play();
     againBtn.onclick = function () {
         location.reload();
@@ -300,4 +311,5 @@ function deleteObj() {
     score.remove();
     indicator.remove();
 }
+
 
