@@ -30,6 +30,7 @@ function isBoom(bullet) {
                         createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "smallBoom");
                         enemy[i].remove();
                         numScores = numScores + 10;
+                        console.log(numScores);
                     }
 
                     else if (enemy[i].className == "enemy-2") {
@@ -73,6 +74,7 @@ function bullToPlayer(bullet, player) {
         player.classList.add('blink');
         player.classList.remove('levitation');
         setTimeout(function () { player.classList.remove('blink'); }, 1000);
+
         playerHealt = document.querySelector('.health-bar');
         playerParam = parseInt(playerHealt.style.width);
         if (playerParam < 10) {
@@ -85,4 +87,3 @@ function bullToPlayer(bullet, player) {
 
     }
 }
-
