@@ -2,9 +2,9 @@ function collision(asteroid, healthValue) {
     if (asteroid.offsetLeft + asteroid.offsetWidth >= player.offsetLeft && asteroid.offsetLeft <= player.offsetLeft + player.offsetWidth) {
         if (asteroid.offsetTop >= player.offsetTop - player.offsetHeight && asteroid.offsetTop <= player.offsetTop) {
             param = parseInt(healthBar.style.width);
-
             if (param < healthValue) {
                 healthBar.style.width = 0 + 'px';
+                param = 0;
             } else {
                 healthBar.style.width = healthBar.offsetWidth - healthValue + 'px';
             }
@@ -13,7 +13,6 @@ function collision(asteroid, healthValue) {
             player.classList.add('blink');
             player.classList.remove('levitation');
             setTimeout(function () { player.classList.remove('blink'); }, 1000);
-            console.log(param);
             gameEnd(param);
 
         }
@@ -31,6 +30,7 @@ function isBoom(bullet) {
                         createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "smallBoom");
                         enemy[i].remove();
                         numScores = numScores + 10;
+                        console.log(numScores);
                     }
 
                     else if (enemy[i].className == "enemy-2") {
@@ -40,10 +40,9 @@ function isBoom(bullet) {
                             enemy[i].remove();
                             numScores = numScores + 20;
                             shotCount = 0;
-
+                            // console.log(numScores);
                         }
                     }
-
                     score.remove();
                     createScore();
                 }
@@ -52,3 +51,37 @@ function isBoom(bullet) {
     }
 }
 
+function bullToUfo(bullet, enemy) {
+    if (bullet.offsetTop <= enemy.offsetTop + enemy.clientHeight - 50
+        && bullet.offsetLeft >= enemy.offsetLeft
+        && bullet.offsetLeft <= enemy.offsetLeft + enemy.clientWidth) {
+        bossHealt = document.querySelector('.boss-health-bar');
+        bossParam = bossHealt.clientWidth;
+        bossParam -= 10;
+        bossHealt.style.width = bossHealt.clientWidth - 10 + 'px';
+        bullet.remove();
+        if (bossParam < 10) {
+            mainScreen.style.display = 'none';
+            winner();
+        }
+    }
+}
+
+function bullToPlayer(bullet, player) {
+    if (bullet.offsetTop + bullet.clientHeight > player.offsetTop
+        && bullet.offsetLeft > player.offsetLeft
+        && bullet.offsetLeft < player.offsetLeft + player.clientWidth) {
+        bullet.remove();
+        playerHealt = document.querySelector('.health-bar');
+        playerParam = parseInt(playerHealt.style.width);
+        if (playerParam < 10) {
+            playerHealt.style.width = 0 + 'px';
+            playerParam = 0;
+        } else {
+            playerHealt.style.width = playerHealt.clientWidth - 10 + 'px';
+        }
+
+        gameEnd(playerParam);
+
+    }
+}
