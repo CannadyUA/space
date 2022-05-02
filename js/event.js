@@ -2,36 +2,29 @@ startBtn.onclick = function () {
     startScreen.style.display = 'none';
     startGame();
 }
-function startGame() {
-    statusGame = 'play';
-    startScreen.style.display = 'none';
-    endScreen.style.display = 'none';
-    createPlayer();
-    player.classList.add('levitation');
-    createUFO();
-    createScore();
-    createHealth();
-    mainScreen.style.display = "block";
-    mainAudio.play();
-    mainAudio.loop = true;
-    delay = getRand(1500, 2500); //затримка для астероїдів
-    longDelay = getRand(3500, 5000);
-    setInterval(createAsteroid, delay);
-    setInterval(createAsteroidBig, longDelay);
-    setInterval(createHeart, 30000);
-}
 
 soundBtn.onclick = function () {
     if (isSound == true) {
-        mainAudio.play(); //audio start 
-        mainAudio.volume = 1;
+        if (isBoss == false) {
+            mainAudio.play(); //audio start 
+            mainAudio.volume = 1;
+        } else {
+            bossFight.play();
+            bossFight.volume = 1
+        }
+
         isSound = false;
         soundBtn.style.color = "white";
 
     }
     else {
         isSound = true;
-        mainAudio.volume = 0; //mute audio
+        if (isBoss == false) {
+            mainAudio.volume = 0; //mute audio
+        } else {
+            bossFight.volume = 0;
+        }
+
         soundBtn.style.color = "gray";
     }
 }
@@ -55,28 +48,3 @@ document.onkeydown = function (e) {
         createBullet();
     }
 }
-
-
-// mainScreen.onclick = function () {
-//     numScores += 1;
-//     score.innerText = 'SCORE:' + numScores;
-//     if (numScores >= 30) {
-//         ufo.style.top = 120 + 'px';
-//         ufo.style.transition = 'top 5s';
-//         mainAudio.pause();
-//         bossFight.play();
-//         bossFight.loop = true;
-//         createBossHealth();
-//         setTimeout(function () {
-//             moveBoss = setInterval(function () {
-//                 if (ufo.offsetLeft <= 200) {
-//                     ufo.style.left = ufo.offsetLeft + 320 + 'px';
-//                 } else {
-//                     ufo.style.left = ufo.offsetLeft - 380 + 'px';
-//                 }
-//             }, 500);
-//             ufo.style.transition = 'left 1s';
-//         }, 4500);
-//     }
-// }
-
