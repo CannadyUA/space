@@ -204,6 +204,15 @@ function moveAsteroid(asteroid, speed) {
     }, speed);
 }
 
+
+
+function createHeart() {
+    heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
+    mainScreen.appendChild(heart);
+    moveHeart();
+}
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
@@ -224,7 +233,6 @@ function moveHeart() {
                 }
             }
         }
-
     }, 20);
 }
 
@@ -255,36 +263,41 @@ function moveBossBull(bull) {
 /*======================Final function======================================*/
 function gameEnd(health) {
     if (health <= 0) {
+        
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
         mainAudio.pause();
         bossFight.pause();
+        gameOverSound = document.createElement('audio');
+        gameOverSound.src = 'audio/game-over.mp3';
+        gameOverSound.play();
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
-            startGame();
+           location.reload();
         }
-
     }
 }
 
 function winner() {
     winScore = document.querySelector('.win-score');
+    againBtn = document.querySelector('.res-btn');
     winScore.innerText = 'SCORE: ' + numScores;
     winScreen.style.display = 'block';
     bossFight.pause();
+    console.log(againBtn);
+    winSound = document.createElement('audio');
+    winSound.src = "audio/win-game.wav";
+    winSound.play();
+    againBtn.onclick = function () {
+        location.reload();
+    }
 }
 
 function deleteObj() {
-    // document.querySelector('.boss').remove();
-    // document.querySelectorAll('.boss-bullet').remove();
-    // document.querySelector('.boss-health').remove();
-    // document.querySelector('.enemy-1').remove();
-    // document.querySelector('.enemy-2').remove();
-    // document.querySelectorAll('.boomAsteroid').remove();
-
     player.remove();
     score.remove();
     indicator.remove();
 }
+
