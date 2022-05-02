@@ -70,6 +70,9 @@ function bullToPlayer(bullet, player) {
         && bullet.offsetLeft > player.offsetLeft
         && bullet.offsetLeft < player.offsetLeft + player.clientWidth) {
         bullet.remove();
+        player.classList.add('blink');
+        player.classList.remove('levitation');
+        setTimeout(function () { player.classList.remove('blink'); }, 1000);
         playerHealt = document.querySelector('.health-bar');
         playerParam = parseInt(playerHealt.style.width);
         if (playerParam < 10) {
@@ -78,7 +81,6 @@ function bullToPlayer(bullet, player) {
         } else {
             playerHealt.style.width = playerHealt.clientWidth - 10 + 'px';
         }
-
         gameEnd(playerParam);
 
     }
