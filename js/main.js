@@ -34,7 +34,7 @@ function startGame() {
     mainScreen.style.display = "block";
     mainAudio.play();
     mainAudio.loop = true;
-    delay = getRand(1400, 2500); //затримка для астероїдів
+    delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
     console.log(statusGame);
     // setInterval(createAsteroid, delay);

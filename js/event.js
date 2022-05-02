@@ -1,8 +1,6 @@
 startBtn.onclick = function () {
     startScreen.style.display = 'none';
-    // if(asteroid && asteroidBig) {
-    //     deleteObj();
-    // }
+    
     startGame();
 }
 

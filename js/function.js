@@ -40,7 +40,6 @@ function isBoom(bullet) {
                             enemy[i].remove();
                             numScores = numScores + 20;
                             shotCount = 0;
-                            // console.log(numScores);
                         }
                     }
                     score.remove();
