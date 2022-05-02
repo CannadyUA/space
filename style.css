@@ -352,10 +352,10 @@ body {
     background: rgb(241, 8, 8);
     position: absolute;
     box-shadow: 0 0 5px rgb(255, 123, 121),
-    0 0 8px rgb(255, 42, 78),
-    0 0 12px rgb(255, 34, 38),
-    0 0 15px rgb(255, 3, 41),
-    0 0 25px rgb(140, 0, 255);
+        0 0 8px rgb(255, 42, 78),
+        0 0 12px rgb(255, 34, 38),
+        0 0 15px rgb(255, 3, 41),
+        0 0 25px rgb(140, 0, 255);
 }
 
 .move-ufo {
@@ -396,4 +396,24 @@ body {
     color: white;
     position: absolute;
     bottom: 0;
+}
+
+/*==========================win block====================================*/
+.win {
+    display: none;
+}
+
+.win-txt,
+.win-score {
+    text-align: center;
+    font-size: 50px;
+    line-height: 75px;
+    width: 450px;
+    margin: 230px auto;
+    margin-bottom: 0px;
+}
+
+.win-score {
+    font-size: 25px;
+    margin: 30px auto;
 }
