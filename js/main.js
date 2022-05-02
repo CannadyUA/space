@@ -103,7 +103,7 @@ function createHeart() {
     mainScreen.appendChild(heart);
     moveHeart();
 }
-
+heartTimer = 0;
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
@@ -125,7 +125,8 @@ function moveHeart() {
                 }
             }
         }
-    }, 20);
+        heartTimer = 20;
+    }, heartTimer);
 }
 
 function createBullet() {
@@ -200,7 +201,10 @@ function gameEnd(health) {
 }
 
 function deleteObj() {
+    heartTimer = 0;
     player.remove();
     score.remove();
     indicator.remove();
+    asteroid.remove();
+    asteroidBig.remove();
 }
