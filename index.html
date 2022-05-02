@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>Space</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-  <title>Space</title>
-</head>
-
-<body>
-  <div class="gameBlock ._block">
-    <!-- ==================start block============================== -->
-    <div class="start _block">
-      <div class="name">SPACE</div>
-      <div id="start-btn" class="start-btn">START GAME</div>
+  <body>
+    <div class="gameBlock ._block">
+      <!-- ==================start block============================== -->
+      <div class="start _block">
+        <div class="name">SPACE</div>
+        <div id="start-btn" class="start-btn">START GAME</div>
+      </div>
+      <!-- ====================main block============================= -->
+      <div class="main _block">
+        <a href="#" type="button" class="sound">MUTE</a>
+        <!-- <div class="player"></div> -->
+        <!-- <div class="boss-bullet"></div> -->
+      </div>
+      <!-- =====================finish block================================= -->
+      <div class="finish _block">
+        <div class="over">GAME OVER</div>
+        <div class="again-btn start-btn">PLAY AGAIN</div>
+      </div>
     </div>
-    <!-- ====================main block============================= -->
-    <div class="main _block">
-      <a href="#" type="button" class="sound">MUTE</a>
-    </div>
-    <!-- =====================finish block================================= -->
-    <div class="finish _block">
-      <div class="over">GAME OVER</div>
-      <div class="again-btn start-btn">PLAY AGAIN</div>
-    </div>
-  </div>
 
-  <script src="js/main.js"></script>
-  <script src="js/event.js"></script>
-  <script src="js/function.js"></script>
-</body>
-
+    <script src="js/main.js"></script>
+    <script src="js/event.js"></script>
+    <script src="js/function.js"></script>
+  </body>
 </html>

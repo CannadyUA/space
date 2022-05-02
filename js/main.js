@@ -25,6 +25,9 @@ function createScore() {
     score.innerText = 'SCORE: ' + numScores;
     mainScreen.appendChild(score);
     gameBlock = document.querySelector('._block');
+    if (numScores == 30) {
+            bossLevel();
+        }
 }
 
 function createHealth() {
@@ -124,6 +127,7 @@ function moveHeart() {
                 }
             }
         }
+        
     }, 20);
 }
 
@@ -134,6 +138,7 @@ function createBullet() {
     bullet.style.left = player.offsetLeft + 49 + "px";
     bullet.style.top = player.offsetTop - 24 + "px";
     moveBullet(bullet);
+    // playerShot.play();
 }
 
 function moveBullet(bullet) {
@@ -143,20 +148,64 @@ function moveBullet(bullet) {
             //interval clearing
             bullet.remove();
             clearInterval(timerID);
-
         }
         isBoom(bullet);
+        bullToUfo(bullet, ufo);
     }, 15);
 }
 
 function createUFO() {
     ufo = document.createElement('div');
     ufo.className = 'boss';
-    ufo.style.left = getRand(0, 380) + 'px';
+    // ufo.style.left = getRand(0, 380) + 'px';
+    ufo.style.left = getRand(5, 330) + 'px';
     mainScreen.appendChild(ufo);
 }
 
-function createBoom(top, left, boomType) {
+function bossLevel() {
+    ufo.style.top = 120 + 'px';
+    ufo.style.transition = 'top 5s';
+    mainAudio.pause();
+    bossFight.play();
+    bossFight.loop = true;
+    createBossHealth();
+    setTimeout(function () {
+        moveBoss = setInterval(function () {   
+             if (ufo.offsetLeft <= 200) {
+             ufo.style.left = 330 + 'px';
+             } else {
+             ufo.style.left =  5 + 'px';
+             }
+             }, 1500);
+             ufo.style.transition = 'left 1.5s';
+            createBossBull();
+        }, 4500);
+    }
+
+
+function createBossBull() {
+        bossShoting = setInterval(function () {
+            bossBull = document.createElement('div');
+            bossBull.className = 'boss-bullet';
+            bossBull.style.left = ufo.offsetLeft + 100 + 'px';
+            mainScreen.appendChild(bossBull);
+            moveBossBull(bossBull);
+        }, 1000);
+}
+
+function moveBossBull(bull) {
+    bossBullMove = setInterval(function () {       
+        bull.style.top = bull.offsetTop + 15 + 'px';
+        if (bull.offsetTop > mainScreen.clientHeight) {
+            bull.remove();
+            // clearInterval(bossBullMove);
+        }
+        
+    }, 20);
+}        
+
+
+function createBoom(top, left, boomType) {   
     let boom = document.createElement("div");
     boom.className = boomType;
     if (boomType == "smallBoom") {
@@ -180,7 +229,25 @@ function createBoom(top, left, boomType) {
 
 }
 
-
+function isBoom(bullet) {
+    let enemy = document.querySelectorAll(".enemy-1");
+    for (i = 0; i < enemy.length; i++) {
+        if (enemy[i] !== null) {
+            if (enemy[i].offsetLeft + enemy[i].offsetWidth >= bullet.offsetLeft && enemy[i].offsetLeft <= bullet.offsetLeft + bullet.offsetWidth) {
+                if (enemy[i].offsetTop >= bullet.offsetTop - bullet.offsetHeight && enemy[i].offsetTop <= bullet.offsetTop) {
+                    bullet.remove();
+                    // shot.play();
+                    createBoom(enemy[i].offsetTop, enemy[i].offsetLeft);
+                    enemy[i].remove();
+                    createAsteroid();
+                    numScores = numScores + 10;
+                    score.remove();
+                    createScore();
+                }
+            }
+        }
+    }
+}
 
 function gameEnd(health) {
     if (health <= 14) {

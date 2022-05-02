@@ -51,4 +51,18 @@ function isBoom(bullet) {
         }
     }
 }
+function bullToUfo(bullet, enemy) {
+    if (bullet.offsetTop <= enemy.offsetTop + enemy.clientHeight - 50 
+        && bullet.offsetLeft >= enemy.offsetLeft 
+        && bullet.offsetLeft <= enemy.offsetLeft + enemy.clientWidth) {
+        console.log("shot");
+        bossHealt = document.querySelector('.boss-health-bar');
+        bossHealt.style.width = bossHealt.clientWidth - 5 + 'px';
+        
+        bullet.remove();
+        if (bullet.offsetTop < mainScreen.clientHeight) {
+            bullet.remove();
+        }
+    }
+}
 

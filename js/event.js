@@ -53,26 +53,26 @@ document.onkeydown = function (e) {
 }
 
 
-mainScreen.onclick = function () {
-    numScores += 1;
-    score.innerText = 'SCORE:' + numScores;
-    if (numScores == 3) {
-        ufo.style.top = 120 + 'px';
-        ufo.style.transition = 'top 5s';
-        mainAudio.pause();
-        bossFight.play();
-        bossFight.loop = true;
-        createBossHealth();
-        setTimeout(function () {
-            moveBoss = setInterval(function () {
-                if (ufo.offsetLeft <= 200) {
-                    ufo.style.left = ufo.offsetLeft + 320 + 'px';
-                } else {
-                    ufo.style.left = ufo.offsetLeft - 380 + 'px';
-                }
-            }, 500);
-            ufo.style.transition = 'left 1s';
-        }, 4500);
-    }
-}
+// mainScreen.onclick = function () {
+//     numScores += 1;
+//     score.innerText = 'SCORE:' + numScores;
+//     if (numScores >= 30) {
+//         ufo.style.top = 120 + 'px';
+//         ufo.style.transition = 'top 5s';
+//         mainAudio.pause();
+//         bossFight.play();
+//         bossFight.loop = true;
+//         createBossHealth();
+//         setTimeout(function () {
+//             moveBoss = setInterval(function () {
+//                 if (ufo.offsetLeft <= 200) {
+//                     ufo.style.left = ufo.offsetLeft + 320 + 'px';
+//                 } else {
+//                     ufo.style.left = ufo.offsetLeft - 380 + 'px';
+//                 }
+//             }, 500);
+//             ufo.style.transition = 'left 1s';
+//         }, 4500);
+//     }
+// }
 
