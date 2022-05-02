@@ -204,6 +204,15 @@ function moveAsteroid(asteroid, speed) {
     }, speed);
 }
 
+
+function createHeart() {
+    heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
+    mainScreen.appendChild(heart);
+    moveHeart();
+}
+
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
@@ -224,7 +233,6 @@ function moveHeart() {
                 }
             }
         }
-
     }, 20);
 }
 
@@ -277,14 +285,17 @@ function winner() {
 }
 
 function deleteObj() {
+
     // document.querySelector('.boss').remove();
     // document.querySelectorAll('.boss-bullet').remove();
     // document.querySelector('.boss-health').remove();
     // document.querySelector('.enemy-1').remove();
     // document.querySelector('.enemy-2').remove();
     // document.querySelectorAll('.boomAsteroid').remove();
-
+    console.log(score);
     player.remove();
     score.remove();
+    console.log()
     indicator.remove();
 }
+
