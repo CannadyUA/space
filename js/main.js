@@ -164,7 +164,7 @@ function createUFO() {
 
 function bossLevel() {
     ufo.style.top = 120 + 'px';
-    ufo.style.transition = 'top 5s';
+    ufo.style.transition = 'top 4.5s';
     mainAudio.pause();
     bossFight.play();
     bossFight.loop = true;
@@ -200,7 +200,7 @@ function moveBossBull(bull) {
             bull.remove();
             // clearInterval(bossBullMove);
         }
-        
+        bullToPlayer(bull, player)
     }, 20);
 }        
 
@@ -279,6 +279,13 @@ function gameEnd(health) {
 }
 
 function deleteObj() {
+    // document.querySelector('.boss').remove();
+    // document.querySelectorAll('.boss-bullet').remove();
+    // document.querySelector('.boss-health').remove();
+    // document.querySelector('.enemy-1').remove();
+    // document.querySelector('.enemy-2').remove();
+    // document.querySelectorAll('.boomAsteroid').remove();
+    
     player.remove();
     score.remove();
     indicator.remove();

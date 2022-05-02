@@ -13,7 +13,7 @@ function collision(asteroid, healthValue) {
             player.classList.add('blink');
             player.classList.remove('levitation');
             setTimeout(function () { player.classList.remove('blink'); }, 1000);
-            console.log(param);
+            // console.log(param);
             gameEnd(param);
 
         }
@@ -55,14 +55,32 @@ function bullToUfo(bullet, enemy) {
     if (bullet.offsetTop <= enemy.offsetTop + enemy.clientHeight - 50 
         && bullet.offsetLeft >= enemy.offsetLeft 
         && bullet.offsetLeft <= enemy.offsetLeft + enemy.clientWidth) {
-        console.log("shot");
+        // console.log("shot");
         bossHealt = document.querySelector('.boss-health-bar');
-        bossHealt.style.width = bossHealt.clientWidth - 5 + 'px';
-        
+        bossParam = bossHealt.clientWidth
+        bossParam -= 10 
+        bossHealt.style.width = bossHealt.clientWidth - 10 + 'px';
+        // console.log(bossHealt.clientWidth);
         bullet.remove();
-        if (bullet.offsetTop < mainScreen.clientHeight) {
-            bullet.remove();
+        if (bossParam < 5) {
+            // win
+            
         }
+    }
+}
+
+function bullToPlayer(bullet, player) {
+    if (bullet.offsetTop + bullet.clientHeight > player.offsetTop
+        && bullet.offsetLeft > player.offsetLeft
+        && bullet.offsetLeft < player.offsetLeft + player.clientWidth) {
+        bullet.remove();
+        playerHealt = document.querySelector('.health-bar');
+        playerParam = playerHealt.clientWidth
+        playerParam -= 10 
+        playerHealt.style.width = playerHealt.clientWidth - 10 + 'px';
+            if (playerHealt < 5) {
+                //game over
+            }
     }
 }
 
