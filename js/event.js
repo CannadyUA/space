@@ -1,7 +1,11 @@
-
 startBtn.onclick = function () {
+    startScreen.style.display = 'none';
+    startGame();
+}
+function startGame() {
     statusGame = 'play';
     startScreen.style.display = 'none';
+    endScreen.style.display = 'none';
     createPlayer();
     player.classList.add('levitation');
     createUFO();
@@ -10,7 +14,7 @@ startBtn.onclick = function () {
     mainScreen.style.display = "block";
     mainAudio.play();
     mainAudio.loop = true;
-    delay = getRand(2000, 3000); //затримка для астероїдів
+    delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
     setInterval(createAsteroid, delay);
     setInterval(createAsteroidBig, longDelay);

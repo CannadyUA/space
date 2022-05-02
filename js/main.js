@@ -19,6 +19,7 @@ function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+
 function createScore() {
     score = document.createElement('div');
     score.className = 'score';
@@ -249,6 +250,7 @@ function isBoom(bullet) {
     }
 }
 
+
 function gameEnd(health) {
     if (health <= 14) {
         statusGame = 'finish';
@@ -258,21 +260,7 @@ function gameEnd(health) {
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
-            statusGame = 'play';
-            endScreen.style.display = 'none';
-            createPlayer();
-            player.classList.add('levitation');
-            createUFO();
-            createScore();
-            createHealth();
-            mainScreen.style.display = "block";
-            mainAudio.play();
-            mainAudio.loop = true;
-            delay = getRand(2000, 3000); //затримка для астероїдів
-            longDelay = getRand(3500, 5000);
-            setInterval(createAsteroid, delay);
-            setInterval(createAsteroidBig, longDelay);
-            setInterval(createHeart, 30000);
+            startGame();
         }
 
     }
