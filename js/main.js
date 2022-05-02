@@ -121,35 +121,38 @@ function moveBullet(bullet) {
             clearInterval(timerID);
         }
         isBoom(bullet);
+        bullToUfo(bullet, ufo);
     }, 15);
 }
 
 function createUFO() {
     ufo = document.createElement('div');
     ufo.className = 'boss';
-    ufo.style.left = getRand(0, 380) + 'px';
+    // ufo.style.left = getRand(0, 380) + 'px';
+    ufo.style.left = getRand(5, 330) + 'px';
     mainScreen.appendChild(ufo);
 }
 
 function bossLevel() {
-     ufo.style.top = 120 + 'px';
-        ufo.style.transition = 'top 5s';
-        mainAudio.pause();
-        bossFight.play();
-        bossFight.loop = true;
-        createBossHealth();
-        setTimeout(function () {
-            moveBoss = setInterval(function () {
-                if (ufo.offsetLeft <= 200) {
-                    ufo.style.left = ufo.offsetLeft + 320 + 'px';
-                } else {
-                    ufo.style.left = ufo.offsetLeft - 380 + 'px';
-                }
-            }, 500);
-            ufo.style.transition = 'left 1s';
+    ufo.style.top = 120 + 'px';
+    ufo.style.transition = 'top 5s';
+    mainAudio.pause();
+    bossFight.play();
+    bossFight.loop = true;
+    createBossHealth();
+    setTimeout(function () {
+        moveBoss = setInterval(function () {   
+             if (ufo.offsetLeft <= 200) {
+             ufo.style.left = 330 + 'px';
+             } else {
+             ufo.style.left =  5 + 'px';
+             }
+             }, 1500);
+             ufo.style.transition = 'left 1.5s';
             createBossBull();
         }, 4500);
-}
+    }
+
 
 function createBossBull() {
         bossShoting = setInterval(function () {
@@ -168,6 +171,7 @@ function moveBossBull(bull) {
             bull.remove();
             // clearInterval(bossBullMove);
         }
+        
     }, 20);
 }        
 
