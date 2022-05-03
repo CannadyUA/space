@@ -57,9 +57,11 @@ function startGame() {
     mainAudio.loop = true;
     delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
+    starDelay = getRand(3000, 8000);
     asteroidInt = setInterval(createAsteroid, delay);
     asteroidInt2 = setInterval(createAsteroidBig, longDelay);
     heartInt = setInterval(createHeart, 30000);
+    starInt = setInterval(createStar, starDelay);
 }
 
 /*================Create function===============================*/
@@ -125,11 +127,18 @@ function createAsteroidBig() {
 function createHeart() {
     heart = document.createElement('div');
     heart.className = 'heart';
-    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 45) + "px";
     mainScreen.appendChild(heart);
     moveHeart();
 }
 
+function createStar() {
+    star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 45) + "px";
+    mainScreen.appendChild(star);
+    moveStar();
+}
 
 function createBullet() {
     bullet = document.createElement("div");
@@ -240,6 +249,28 @@ function moveHeart() {
                         healthBar.style.width = healthBar.offsetWidth + 20 + 'px';
                     }
                     heart.remove();
+                    //interval clearing
+                    clearInterval(timerID);
+                }
+            }
+        }
+    }, 20);
+}
+
+function moveStar() {
+    let timerID = setInterval(function () {
+        star.style.top = star.offsetTop + 5 + "px";
+        if (star.offsetTop > mainScreen.clientHeight) {
+            star.remove();
+            clearInterval(timerID);
+        }
+
+        if (statusGame !== 'finish') {
+            if (star.offsetLeft + star.offsetWidth >= player.offsetLeft && star.offsetLeft <= player.offsetLeft + player.offsetWidth) {
+                if (star.offsetTop >= player.offsetTop - player.offsetHeight && star.offsetTop <= player.offsetTop) {
+                    numScores += 20;
+                    score.innerText = "SCORE: " + numScores;
+                    star.remove();
                     //interval clearing
                     clearInterval(timerID);
                 }

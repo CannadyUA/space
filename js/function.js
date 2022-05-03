@@ -98,6 +98,7 @@ function destroyUfo() {
     clearInterval(asteroidInt);
     clearInterval(asteroidInt2);
     clearInterval(heartInt);
+    clearInterval(starInt);
     destUfo = setInterval(function () {
         createBoom(getRand(20, 150), getRand(ufo.offsetLeft, ufo.offsetLeft + ufo.clientWidth), "bigBoom");
     }, 1000);
