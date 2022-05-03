@@ -415,3 +415,53 @@ body {
     font-size: 25px;
     margin: 30px auto;
 }
+.comment {
+    position: absolute;
+    margin: 500px 100px;  
+    transition: all 0.3s;
+}
+.comment-anim {
+    animation: comment-anim 3s;
+}
+
+@keyframes comment-anim {
+    50% {
+        transform: scale(1);
+        opacity: 100%;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0%;
+    }
+}
+.start-comment {
+    line-height: 20px;
+    position: absolute;
+    margin: 400px 80px;  
+    transition: all 0.3s;
+}
+.start-comment-anim {
+    animation: start-comment-anim 3s;
+}
+
+@keyframes start-comment-anim {
+    0% {
+        top: 500px;
+    }
+
+    100% {
+        top: 0px
+    }
+}
+.start-comment-anim-fade {
+    animation: start-comment-anim-fade 4s;
+}
+@keyframes start-comment-anim-fade {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: 1000px
+    }
+}
