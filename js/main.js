@@ -5,23 +5,44 @@ startScreen = document.querySelector('.start');
 mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
 winScreen = document.querySelector('.win');
-numScores = 0;
 player = document.querySelector('.player');
+soundBtn = document.querySelector(".sound");
+moveBoss = 0;
+bossShoting = 0;
+timerID = 0;
+
+statusGame = 'open';
+
+isSound = false;
+isBoss = false;
+
+//counters
+numScores = 0;
+shotCount = 0;
+
+//sounds
 bossFight = document.createElement('audio');
 bossFight.src = 'audio/fight.mp3';
+
 mainAudio = document.createElement('audio');
 mainAudio.src = 'audio/main.mp3';
-soundBtn = document.querySelector(".sound");
-statusGame = 'open';
-isSound = false; //flag for checking
-shotCount = 0; //number of bullet 
-isBoss = false;
+
+winSound = document.createElement('audio');
+winSound.src = 'audio/win-game.wav';
+
+gameOver = document.createElement('audio');
+gameOver.src = 'audio/game-over.mp3';
+
+killUfo = document.createElement('audio');
+killUfo.src = 'audio/kill.mp3';
+
 
 //helping function
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+//main functions
 function startGame() {
 
     startScreen.style.display = 'none';
@@ -29,7 +50,6 @@ function startGame() {
     createPlayer();
     player.classList.add('levitation');
 
-    console.log(numScores);
     numScores = 0;
 
     createScore();
@@ -39,8 +59,6 @@ function startGame() {
     mainAudio.loop = true;
     delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
-    console.log(statusGame);
-    // setInterval(createAsteroid, delay);
     let intervalID = setInterval(createAsteroid, delay);
 
     intervalID2 = setInterval(createAsteroidBig, longDelay);
@@ -96,7 +114,6 @@ function createAsteroid() {
     let asteroid = document.createElement("div");
     asteroid.className = "enemy-1";
     asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
-    console.log(asteroid);
 
     if (statusGame != 'finish') {
         mainScreen.appendChild(asteroid);
@@ -226,14 +243,6 @@ function moveAsteroid(asteroid, speed) {
 }
 
 
-function createHeart() {
-    heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
-    mainScreen.appendChild(heart);
-    moveHeart();
-}
-
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
@@ -281,10 +290,10 @@ function moveBossBull(bull) {
 
             if (bull.offsetTop > mainScreen.clientHeight || statusGame == 'finish') {
                 bull.remove();
-                clearInterval()
+                clearInterval(bossBullMove);
 
             }
-            bullToPlayer(bull, player)
+            bullToPlayer(bull, player);
         }
     }, 20);
 }
@@ -293,27 +302,33 @@ function moveBossBull(bull) {
 /*======================Final function======================================*/
 function gameEnd(health) {
     if (health <= 0) {
+
         statusGame = 'finish';
         numScores = 0;
-        console.log(numScores);
         mainScreen.style.display = 'none';
         deleteObj();
         mainAudio.pause();
         bossFight.pause();
+        gameOver.play();
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
-            startGame();
+            location.reload();
         }
-
     }
 }
 
 function winner() {
     winScore = document.querySelector('.win-score');
-    winScore.innerText = 'SCORE: ' + numScores;
+    againBtn = document.querySelector('.res-btn');
+    winScore.innerText = 'SCORE: ' + (numScores + 10000);
+    mainScreen.style.display = 'none';
     winScreen.style.display = 'block';
     bossFight.pause();
+    winSound.play();
+    againBtn.onclick = function () {
+        location.reload();
+    }
 }
 
 function deleteObj() {
@@ -324,3 +339,4 @@ function deleteObj() {
     indicator.remove();
 
 }
+

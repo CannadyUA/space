@@ -221,8 +221,6 @@ body {
     background-color: #ff0000;
     position: absolute;
 }
-
-
 /*asteroid*/
 .enemy-1 {
     z-index: 1;
@@ -352,10 +350,11 @@ body {
     background: rgb(241, 8, 8);
     position: absolute;
     box-shadow: 0 0 5px rgb(255, 123, 121),
-        0 0 8px rgb(255, 42, 78),
-        0 0 12px rgb(255, 34, 38),
-        0 0 15px rgb(255, 3, 41),
-        0 0 25px rgb(140, 0, 255);
+    0 0 8px rgb(255, 42, 78),
+    0 0 12px rgb(255, 34, 38),
+    0 0 15px rgb(255, 3, 41),
+    0 0 25px rgb(140, 0, 255);
+
 }
 
 .move-ufo {
@@ -388,7 +387,6 @@ body {
     width: 450px;
     margin: 230px auto;
 }
-
 .sound {
     display: inline-block;
     margin: 20px;
