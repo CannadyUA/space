@@ -63,7 +63,7 @@ function bullToUfo(bullet, enemy) {
         bossParam -= 10;
         bossHealt.style.width = bossHealt.clientWidth - 10 + 'px';
         bullet.remove();
-
+        
         if (bossParam < 10) {
             destroyUfo();
             bossFight.pause();
@@ -73,16 +73,13 @@ function bullToUfo(bullet, enemy) {
 }
 
 function bullToPlayer(bullet, player) {
-    console.log('ok');
     if (bullet.offsetTop + bullet.clientHeight > player.offsetTop
         && bullet.offsetLeft > player.offsetLeft
         && bullet.offsetLeft < player.offsetLeft + player.clientWidth) {
-
         bullet.remove();
         player.classList.add('blink');
         player.classList.remove('levitation');
         setTimeout(function () { player.classList.remove('blink'); }, 1000);
-
         playerHealt = document.querySelector('.health-bar');
         playerParam = parseInt(playerHealt.style.width);
         if (playerParam < 10) {
@@ -101,11 +98,11 @@ function destroyUfo() {
     clearInterval(bossShoting);
     clearInterval(timerID);
     destUfo = setInterval(function () {
-
+        
         createBoom(getRand(20, 150), getRand(ufo.offsetLeft, ufo.offsetLeft + ufo.clientWidth), "bigBoom");
     }, 1000);
     setTimeout(function () {
         clearInterval(destUfo);
-        winner();
-    }, 5000);
+        winner(); 
+     }, 5000);
 }

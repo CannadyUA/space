@@ -18,7 +18,7 @@ isBoss = false;
 
 //counters
 numScores = 0;
-shotCount = 0;
+shotCount = 0; 
 
 //sounds
 bossFight = document.createElement('audio');
@@ -44,14 +44,12 @@ function getRand(min, max) {
 
 //main functions
 function startGame() {
-
+    statusGame = 'play';
     startScreen.style.display = 'none';
     endScreen.style.display = 'none';
     createPlayer();
     player.classList.add('levitation');
-
-    numScores = 0;
-
+    createUFO();
     createScore();
     createHealth();
     mainScreen.style.display = "block";
@@ -59,18 +57,9 @@ function startGame() {
     mainAudio.loop = true;
     delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
-    let intervalID = setInterval(createAsteroid, delay);
-
-    intervalID2 = setInterval(createAsteroidBig, longDelay);
-
-    intervalID3 = setInterval(createHeart, 30000);
-
-    if (statusGame == 'finish') {
-        clearInterval(intervalID);
-        clearInterval(intervalID2);
-        clearInterval(intervalID3);
-        statusGame = 'play';
-    }
+    setInterval(createAsteroid, delay);
+    setInterval(createAsteroidBig, longDelay);
+    setInterval(createHeart, 30000);
 }
 
 /*================Create function===============================*/
@@ -115,7 +104,7 @@ function createAsteroid() {
     asteroid.className = "enemy-1";
     asteroid.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 65) + "px";
 
-    if (statusGame != 'finish') {
+    if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroid);
         moveAsteroid(asteroid, 15);
     }
@@ -126,7 +115,7 @@ function createAsteroidBig() {
     asteroidBig.className = "enemy-2";
     asteroidBig.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 110) + "px";
 
-    if (statusGame != 'finish') {
+    if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroidBig);
         moveAsteroid(asteroidBig, 20);
     }
@@ -160,7 +149,6 @@ function createUFO() {
 
 function bossLevel() {
     isBoss = true;
-    createUFO();
     ufo.style.top = 120 + 'px';
     ufo.style.transition = 'top 4.5s';
     mainAudio.pause();
@@ -175,10 +163,6 @@ function bossLevel() {
                 ufo.style.left = 330 + 'px';
             } else {
                 ufo.style.left = 5 + 'px';
-            }
-
-            if (statusGame == 'finish') {
-                clearInterval(moveBoss);
             }
         }, 1500);
         ufo.style.transition = 'left 1.5s';
@@ -225,16 +209,15 @@ function moveAsteroid(asteroid, speed) {
     let timerID = setInterval(function () {
         asteroid.style.top = asteroid.offsetTop + 5 + "px";
 
-
-        if (asteroid.offsetTop > mainScreen.clientHeight || statusGame == 'finish') {
+        if (asteroid.offsetTop > mainScreen.clientHeight) {
             asteroid.remove();
             //interval clearing
             clearInterval(timerID);
         }
 
-        if (statusGame != 'finish') {
+        if (statusGame !== 'finish') {
             if (asteroid.className == "enemy-1") {
-                collision(asteroid, 100);
+                collision(asteroid, 20);
             } else if (asteroid.className == "enemy-2") {
                 collision(asteroid, 50);
             }
@@ -243,15 +226,23 @@ function moveAsteroid(asteroid, speed) {
 }
 
 
+
+function createHeart() {
+    heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
+    mainScreen.appendChild(heart);
+    moveHeart();
+}
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
-        if (heart.offsetTop > mainScreen.clientHeigh || statusGame == 'finish') {
+        if (heart.offsetTop > mainScreen.clientHeight) {
             heart.remove();
             clearInterval(timerID);
         }
 
-        if (statusGame != 'finish') {
+        if (statusGame !== 'finish') {
             if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
                 if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 50 && heart.offsetTop <= player.offsetTop) {
                     if (parseInt(healthBar.style.width) < 244) {
@@ -275,9 +266,7 @@ function moveBullet(bullet) {
             clearInterval(timerID);
         }
         isBoom(bullet);
-        ufo = document.querySelector(".boss");
-        if (ufo)
-            bullToUfo(bullet, ufo);
+        bullToUfo(bullet, ufo);
     }, 15);
 }
 
@@ -287,24 +276,16 @@ function moveBossBull(bull) {
         bull.style.top = bull.offsetTop + 15 + 'px';
         if (bull.offsetTop > mainScreen.clientHeight) {
             bull.remove();
-
-            if (bull.offsetTop > mainScreen.clientHeight || statusGame == 'finish') {
-                bull.remove();
-                clearInterval(bossBullMove);
-
-            }
-            bullToPlayer(bull, player);
         }
+        bullToPlayer(bull, player)
     }, 20);
 }
-
 
 /*======================Final function======================================*/
 function gameEnd(health) {
     if (health <= 0) {
-
+        
         statusGame = 'finish';
-        numScores = 0;
         mainScreen.style.display = 'none';
         deleteObj();
         mainAudio.pause();
@@ -313,7 +294,7 @@ function gameEnd(health) {
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
-            location.reload();
+           location.reload();
         }
     }
 }
@@ -325,6 +306,7 @@ function winner() {
     mainScreen.style.display = 'none';
     winScreen.style.display = 'block';
     bossFight.pause();
+    // console.log(againBtn);
     winSound.play();
     againBtn.onclick = function () {
         location.reload();
@@ -333,10 +315,8 @@ function winner() {
 
 function deleteObj() {
     player.remove();
-
-    scoreDel = document.querySelector(".score");
-    scoreDel.remove();
+    score.remove();
     indicator.remove();
-
 }
+
 
