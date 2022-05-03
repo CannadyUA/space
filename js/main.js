@@ -18,7 +18,7 @@ isBoss = false;
 
 //counters
 numScores = 0;
-shotCount = 0; 
+shotCount = 0;
 
 //sounds
 bossFight = document.createElement('audio');
@@ -57,9 +57,9 @@ function startGame() {
     mainAudio.loop = true;
     delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
-    setInterval(createAsteroid, delay);
-    setInterval(createAsteroidBig, longDelay);
-    setInterval(createHeart, 30000);
+    asteroidInt = setInterval(createAsteroid, delay);
+    asteroidInt2 = setInterval(createAsteroidBig, longDelay);
+    heartInt = setInterval(createHeart, 30000);
 }
 
 /*================Create function===============================*/
@@ -225,15 +225,6 @@ function moveAsteroid(asteroid, speed) {
     }, speed);
 }
 
-
-
-function createHeart() {
-    heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
-    mainScreen.appendChild(heart);
-    moveHeart();
-}
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
@@ -284,7 +275,7 @@ function moveBossBull(bull) {
 /*======================Final function======================================*/
 function gameEnd(health) {
     if (health <= 0) {
-        
+
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
@@ -294,19 +285,19 @@ function gameEnd(health) {
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
-           location.reload();
+            location.reload();
         }
     }
 }
 
 function winner() {
+    statusGame = 'winner';
     winScore = document.querySelector('.win-score');
     againBtn = document.querySelector('.res-btn');
     winScore.innerText = 'SCORE: ' + (numScores + 10000);
     mainScreen.style.display = 'none';
     winScreen.style.display = 'block';
     bossFight.pause();
-    // console.log(againBtn);
     winSound.play();
     againBtn.onclick = function () {
         location.reload();
