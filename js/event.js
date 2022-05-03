@@ -1,3 +1,5 @@
+
+
 startBtn.onclick = function () {
     startScreen.style.display = 'none';
     startGame();
@@ -29,7 +31,6 @@ soundBtn.onclick = function () {
     }
 }
 
-
 document.onkeydown = function (e) {
     if (e.keyCode == 39) {
         player.style.left = player.offsetLeft + 70 + 'px';
@@ -42,9 +43,11 @@ document.onkeydown = function (e) {
             player.style.left = 5 + 'px';
         }
     }
-
     //shot
-    if (e.keyCode == 32) {
-        createBullet();
-    }
+    
+        if (e.keyCode == 32) {
+            if(e.repeat != true)
+                createBullet();
+        }
 }
+

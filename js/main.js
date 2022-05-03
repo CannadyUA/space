@@ -5,23 +5,38 @@ startScreen = document.querySelector('.start');
 mainScreen = document.querySelector('.main');
 endScreen = document.querySelector('.finish');
 winScreen = document.querySelector('.win');
-numScores = 0;
 player = document.querySelector('.player');
+soundBtn = document.querySelector(".sound");
+
+statusGame = 'open';
+
+isSound = false;
+isBoss = false;
+
+//counters
+numScores = 0;
+shotCount = 0; 
+
+//sounds
 bossFight = document.createElement('audio');
 bossFight.src = 'audio/fight.mp3';
+
 mainAudio = document.createElement('audio');
 mainAudio.src = 'audio/main.mp3';
-soundBtn = document.querySelector(".sound");
-statusGame = 'open';
-isSound = false; //flag for checking
-shotCount = 0; //number of bullet 
-isBoss = false;
+
+winSound = document.createElement('audio');
+winSound.src = 'audio/win-game.wav';
+
+gameOver = document.createElement('audio');
+gameOver.src = 'audio/game-over.wav';
+
 
 //helping function
 function getRand(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+//main functions
 function startGame() {
     statusGame = 'play';
     startScreen.style.display = 'none';
@@ -204,6 +219,15 @@ function moveAsteroid(asteroid, speed) {
     }, speed);
 }
 
+
+
+function createHeart() {
+    heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
+    mainScreen.appendChild(heart);
+    moveHeart();
+}
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
@@ -224,7 +248,6 @@ function moveHeart() {
                 }
             }
         }
-
     }, 20);
 }
 
@@ -255,36 +278,38 @@ function moveBossBull(bull) {
 /*======================Final function======================================*/
 function gameEnd(health) {
     if (health <= 0) {
+        
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
         mainAudio.pause();
         bossFight.pause();
+        gameOver.play();
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
-            startGame();
+           location.reload();
         }
-
     }
 }
 
 function winner() {
     winScore = document.querySelector('.win-score');
+    againBtn = document.querySelector('.res-btn');
     winScore.innerText = 'SCORE: ' + numScores;
     winScreen.style.display = 'block';
     bossFight.pause();
+    console.log(againBtn);
+    winSound.play();
+    againBtn.onclick = function () {
+        location.reload();
+    }
 }
 
 function deleteObj() {
-    // document.querySelector('.boss').remove();
-    // document.querySelectorAll('.boss-bullet').remove();
-    // document.querySelector('.boss-health').remove();
-    // document.querySelector('.enemy-1').remove();
-    // document.querySelector('.enemy-2').remove();
-    // document.querySelectorAll('.boomAsteroid').remove();
-
     player.remove();
     score.remove();
     indicator.remove();
 }
+
+
