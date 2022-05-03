@@ -20,7 +20,8 @@ function collision(asteroid, healthValue) {
         }
     }
 }
-
+shotCountSmall = 0;
+shotCountBig = 0;
 function isBoom(bullet) {
     let enemy = document.querySelectorAll(".enemy-1, .enemy-2");
     for (i = 0; i < enemy.length; i++) {
@@ -30,17 +31,21 @@ function isBoom(bullet) {
                     bullet.remove();
                     if (enemy[i].className == "enemy-1") {
                         createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "smallBoom");
-                        enemy[i].remove();
-                        numScores = numScores + 10;
+                        shotCountSmall = shotCountSmall + 1;
+                        if (shotCountSmall == 2) {
+                            enemy[i].remove();
+                            numScores = numScores + 10;
+                            shotCountSmall = 0;
+                        }
                     }
 
                     else if (enemy[i].className == "enemy-2") {
                         createBoom(enemy[i].offsetTop, enemy[i].offsetLeft, "bigBoom");
-                        shotCount = shotCount + 1;
-                        if (shotCount == 2) {
+                        shotCountBig = shotCountBig + 1;
+                        if (shotCountBig == 3) {
                             enemy[i].remove();
                             numScores = numScores + 20;
-                            shotCount = 0;
+                            shotCountBig = 0;
                         }
                     }
                     score.remove();
@@ -60,8 +65,8 @@ function bullToUfo(bullet, enemy) {
         score.innerText = "SCORE: " + numScores;
         bossHealt = document.querySelector('.boss-health-bar');
         bossParam = bossHealt.clientWidth;
-        bossParam -= 10;
-        bossHealt.style.width = bossHealt.clientWidth - 10 + 'px';
+        bossParam -= 5;
+        bossHealt.style.width = bossHealt.clientWidth - 5 + 'px';
         bullet.remove();
         
         if (bossParam < 10) {
@@ -82,11 +87,11 @@ function bullToPlayer(bullet, player) {
         setTimeout(function () { player.classList.remove('blink'); }, 1000);
         playerHealt = document.querySelector('.health-bar');
         playerParam = parseInt(playerHealt.style.width);
-        if (playerParam < 10) {
+        if (playerParam < 40) {
             playerHealt.style.width = 0 + 'px';
             playerParam = 0;
         } else {
-            playerHealt.style.width = playerHealt.clientWidth - 10 + 'px';
+            playerHealt.style.width = playerHealt.clientWidth - 40 + 'px';
         }
         gameEnd(playerParam);
 

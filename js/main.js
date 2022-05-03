@@ -57,6 +57,7 @@ function startGame() {
     mainAudio.loop = true;
     delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
+    setInterval(createAsteroid, 3600);
     setInterval(createAsteroid, delay);
     setInterval(createAsteroidBig, longDelay);
     setInterval(createHeart, 30000);
@@ -69,7 +70,7 @@ function createScore() {
     score.innerText = 'SCORE: ' + numScores;
     mainScreen.appendChild(score);
     gameBlock = document.querySelector('._block');
-    if (numScores === 40 && isBoss === false || numScores == 50 && isBoss === false) {
+    if (numScores === 200 && isBoss === false || numScores == 210 && isBoss === false) {
         bossLevel();
     }
 }
@@ -117,17 +118,8 @@ function createAsteroidBig() {
 
     if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroidBig);
-        moveAsteroid(asteroidBig, 20);
+        moveAsteroid(asteroidBig, 18);
     }
-}
-
-
-function createHeart() {
-    heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
-    mainScreen.appendChild(heart);
-    moveHeart();
 }
 
 
@@ -217,9 +209,9 @@ function moveAsteroid(asteroid, speed) {
 
         if (statusGame !== 'finish') {
             if (asteroid.className == "enemy-1") {
-                collision(asteroid, 20);
+                collision(asteroid, 40);
             } else if (asteroid.className == "enemy-2") {
-                collision(asteroid, 50);
+                collision(asteroid, 60);
             }
         }
     }, speed);
@@ -246,7 +238,7 @@ function moveHeart() {
             if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
                 if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 50 && heart.offsetTop <= player.offsetTop) {
                     if (parseInt(healthBar.style.width) < 244) {
-                        healthBar.style.width = healthBar.offsetWidth + 20 + 'px';
+                        healthBar.style.width = healthBar.offsetWidth + 30 + 'px';
                     }
                     heart.remove();
                     //interval clearing
