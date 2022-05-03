@@ -7,6 +7,8 @@ endScreen = document.querySelector('.finish');
 winScreen = document.querySelector('.win');
 player = document.querySelector('.player');
 soundBtn = document.querySelector(".sound");
+comment = document.querySelector('.comment');
+startComment = document.querySelector('.start-comment');
 moveBoss = 0;
 bossShoting = 0;
 timerID = 0;
@@ -36,6 +38,11 @@ gameOver.src = 'audio/game-over.mp3';
 killUfo = document.createElement('audio');
 killUfo.src = 'audio/kill.mp3';
 
+letsGetHim = document.createElement('audio');
+letsGetHim.src = 'audio/lets-get-him.mp3';
+
+houston = document.createElement('audio');
+houston.src = 'audio/houston.mp3';
 
 //helping function
 function getRand(min, max) {
@@ -55,6 +62,16 @@ function startGame() {
     mainScreen.style.display = "block";
     mainAudio.play();
     mainAudio.loop = true;
+
+    startComment.innerText = 'The forces of darkness have invaded our Galaxy. And only the power of Purity and Valor can restore Justice';
+    startComment.classList.add('start-comment-anim');
+    setTimeout(function(){
+        startComment.classList.remove('start-comment-anim');
+        startComment.classList.add('start-comment-anim-fade');
+        setTimeout(function() {
+            startComment.remove();
+        },4000);
+    }, 5000);
     delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
     starDelay = getRand(3000, 8000);
@@ -62,6 +79,7 @@ function startGame() {
     asteroidInt2 = setInterval(createAsteroidBig, longDelay);
     heartInt = setInterval(createHeart, 30000);
     starInt = setInterval(createStar, starDelay);
+
 }
 
 /*================Create function===============================*/
@@ -71,8 +89,19 @@ function createScore() {
     score.innerText = 'SCORE: ' + numScores;
     mainScreen.appendChild(score);
     gameBlock = document.querySelector('._block');
-    if (numScores === 40 && isBoss === false || numScores == 50 && isBoss === false) {
+    if (numScores === 200 && isBoss === false || numScores == 210 && isBoss === false) {
         bossLevel();
+        houston.play();
+        comment.innerHTML = 'Ooh..<br>Houston, we have a problem';
+        setTimeout(function() {
+            comment.classList.add('comment-anim');
+            comment.innerText = "Let's get him!!!";
+            letsGetHim.play();
+            setTimeout(function() {
+                comment.remove();
+            },3000);
+        }, 4000);
+
     }
 }
 
@@ -119,9 +148,10 @@ function createAsteroidBig() {
 
     if (statusGame !== 'finish') {
         mainScreen.appendChild(asteroidBig);
-        moveAsteroid(asteroidBig, 20);
+        moveAsteroid(asteroidBig, 18);
     }
 }
+
 
 
 function createHeart() {
@@ -226,9 +256,9 @@ function moveAsteroid(asteroid, speed) {
 
         if (statusGame !== 'finish') {
             if (asteroid.className == "enemy-1") {
-                collision(asteroid, 20);
+                collision(asteroid, 40);
             } else if (asteroid.className == "enemy-2") {
-                collision(asteroid, 50);
+                collision(asteroid, 60);
             }
         }
     }, speed);
@@ -246,7 +276,7 @@ function moveHeart() {
             if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
                 if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 60 && heart.offsetTop <= player.offsetTop) {
                     if (parseInt(healthBar.style.width) < 244) {
-                        healthBar.style.width = healthBar.offsetWidth + 20 + 'px';
+                        healthBar.style.width = healthBar.offsetWidth + 30 + 'px';
                     }
                     heart.remove();
                     //interval clearing
