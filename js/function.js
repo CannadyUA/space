@@ -103,7 +103,6 @@ function bullToPlayer(bullet, player) {
 }
 
 
-
 function destroyUfo() {
     clearInterval(moveBoss);
     clearInterval(bossShoting);
