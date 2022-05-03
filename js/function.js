@@ -18,6 +18,8 @@ function collision(asteroid, healthValue) {
         }
     }
 }
+
+
 shotCountSmall = 0;
 shotCountBig = 0;
 function isBoom(bullet) {
@@ -54,6 +56,8 @@ function isBoom(bullet) {
     }
 }
 
+
+
 function bullToUfo(bullet, enemy) {
     if (bullet.offsetTop <= enemy.offsetTop + enemy.clientHeight - 50
         && bullet.offsetLeft >= enemy.offsetLeft
@@ -75,6 +79,8 @@ function bullToUfo(bullet, enemy) {
     }
 }
 
+
+
 function bullToPlayer(bullet, player) {
     if (bullet.offsetTop + bullet.clientHeight > player.offsetTop
         && bullet.offsetLeft > player.offsetLeft
@@ -95,6 +101,8 @@ function bullToPlayer(bullet, player) {
 
     }
 }
+
+
 
 function destroyUfo() {
     clearInterval(moveBoss);
