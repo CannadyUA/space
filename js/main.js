@@ -37,7 +37,7 @@ function startGame() {
     mainScreen.style.display = "block";
     mainAudio.play();
     mainAudio.loop = true;
-    delay = getRand(1400, 2500); //затримка для астероїдів
+    delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
     console.log(statusGame);
     // setInterval(createAsteroid, delay);
@@ -317,17 +317,10 @@ function winner() {
 }
 
 function deleteObj() {
-    // document.querySelector('.boss').remove();
-    // document.querySelector('.boss-bullet').remove();
-    // document.querySelector('.boss-health').remove();
-    // document.querySelector('.enemy-1').remove();
-    // document.querySelector('.enemy-2').remove();
-    // document.querySelectorAll('.boomAsteroid').remove();
-    // bossBull.remove();
-
     player.remove();
-    score.remove();
-    console.log()
+
+    scoreDel = document.querySelector(".score");
+    scoreDel.remove();
     indicator.remove();
 
 }
