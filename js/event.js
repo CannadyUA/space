@@ -1,5 +1,3 @@
-
-
 startBtn.onclick = function () {
     startScreen.style.display = 'none';
     startGame();
