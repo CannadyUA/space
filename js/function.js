@@ -1,5 +1,3 @@
-
-
 function collision(asteroid, healthValue) {
     if (asteroid.offsetLeft + asteroid.offsetWidth >= player.offsetLeft && asteroid.offsetLeft <= player.offsetLeft + player.offsetWidth) {
         if (asteroid.offsetTop >= player.offsetTop - player.offsetHeight && asteroid.offsetTop <= player.offsetTop) {
@@ -68,7 +66,7 @@ function bullToUfo(bullet, enemy) {
         bossParam -= 5;
         bossHealt.style.width = bossHealt.clientWidth - 5 + 'px';
         bullet.remove();
-        
+
         if (bossParam < 10) {
             destroyUfo();
             bossFight.pause();
@@ -102,16 +100,15 @@ function destroyUfo() {
     clearInterval(moveBoss);
     clearInterval(bossShoting);
     clearInterval(timerID);
+    clearInterval(asteroidInt);
+    clearInterval(asteroidInt2);
+    clearInterval(heartInt);
+    clearInterval(starInt);
     destUfo = setInterval(function () {
-        
         createBoom(getRand(20, 150), getRand(ufo.offsetLeft, ufo.offsetLeft + ufo.clientWidth), "bigBoom");
     }, 1000);
     setTimeout(function () {
         clearInterval(destUfo);
-        winner(); 
-     }, 5000);
+        winner();
+    }, 5000);
 }
-
-
-
-

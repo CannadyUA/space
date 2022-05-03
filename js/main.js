@@ -20,7 +20,7 @@ isBoss = false;
 
 //counters
 numScores = 0;
-shotCount = 0; 
+shotCount = 0;
 
 //sounds
 bossFight = document.createElement('audio');
@@ -74,10 +74,12 @@ function startGame() {
     }, 5000);
     delay = getRand(1500, 2500); //затримка для астероїдів
     longDelay = getRand(3500, 5000);
-    setInterval(createAsteroid, 3600);
-    setInterval(createAsteroid, delay);
-    setInterval(createAsteroidBig, longDelay);
-    setInterval(createHeart, 30000);
+    starDelay = getRand(3000, 8000);
+    asteroidInt = setInterval(createAsteroid, delay);
+    asteroidInt2 = setInterval(createAsteroidBig, longDelay);
+    heartInt = setInterval(createHeart, 30000);
+    starInt = setInterval(createStar, starDelay);
+
 }
 
 /*================Create function===============================*/
@@ -87,7 +89,7 @@ function createScore() {
     score.innerText = 'SCORE: ' + numScores;
     mainScreen.appendChild(score);
     gameBlock = document.querySelector('._block');
-    if (numScores === 10 && isBoss === false || numScores == 210 && isBoss === false) {
+    if (numScores === 200 && isBoss === false || numScores == 210 && isBoss === false) {
         bossLevel();
         houston.play();
         comment.innerHTML = 'Ooh..<br>Houston, we have a problem';
@@ -150,6 +152,23 @@ function createAsteroidBig() {
     }
 }
 
+
+
+function createHeart() {
+    heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 45) + "px";
+    mainScreen.appendChild(heart);
+    moveHeart();
+}
+
+function createStar() {
+    star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 45) + "px";
+    mainScreen.appendChild(star);
+    moveStar();
+}
 
 function createBullet() {
     bullet = document.createElement("div");
@@ -245,15 +264,6 @@ function moveAsteroid(asteroid, speed) {
     }, speed);
 }
 
-
-
-function createHeart() {
-    heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = getRand(gameBlock.clientWidth, mainScreen.clientWidth - 35) + "px";
-    mainScreen.appendChild(heart);
-    moveHeart();
-}
 function moveHeart() {
     let timerID = setInterval(function () {
         heart.style.top = heart.offsetTop + 5 + "px";
@@ -264,11 +274,33 @@ function moveHeart() {
 
         if (statusGame !== 'finish') {
             if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
-                if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 50 && heart.offsetTop <= player.offsetTop) {
+                if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 60 && heart.offsetTop <= player.offsetTop) {
                     if (parseInt(healthBar.style.width) < 244) {
                         healthBar.style.width = healthBar.offsetWidth + 30 + 'px';
                     }
                     heart.remove();
+                    //interval clearing
+                    clearInterval(timerID);
+                }
+            }
+        }
+    }, 20);
+}
+
+function moveStar() {
+    let timerID = setInterval(function () {
+        star.style.top = star.offsetTop + 5 + "px";
+        if (star.offsetTop > mainScreen.clientHeight) {
+            star.remove();
+            clearInterval(timerID);
+        }
+
+        if (statusGame !== 'finish') {
+            if (star.offsetLeft + star.offsetWidth >= player.offsetLeft && star.offsetLeft <= player.offsetLeft + player.offsetWidth) {
+                if (star.offsetTop >= player.offsetTop - player.offsetHeight + 60 && star.offsetTop <= player.offsetTop) {
+                    numScores += 20;
+                    score.innerText = "SCORE: " + numScores;
+                    star.remove();
                     //interval clearing
                     clearInterval(timerID);
                 }
@@ -304,7 +336,7 @@ function moveBossBull(bull) {
 /*======================Final function======================================*/
 function gameEnd(health) {
     if (health <= 0) {
-        
+
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
@@ -314,19 +346,19 @@ function gameEnd(health) {
         endScreen.style.display = 'block';
 
         againBtn.onclick = function () {
-           location.reload();
+            location.reload();
         }
     }
 }
 
 function winner() {
+    statusGame = 'winner';
     winScore = document.querySelector('.win-score');
     againBtn = document.querySelector('.res-btn');
     winScore.innerText = 'SCORE: ' + (numScores + 10000);
     mainScreen.style.display = 'none';
     winScreen.style.display = 'block';
     bossFight.pause();
-    // console.log(againBtn);
     winSound.play();
     againBtn.onclick = function () {
         location.reload();
