@@ -44,11 +44,11 @@ document.onkeydown = function (e) {
         }
     }
     //shot
-    
-        if (e.keyCode == 32) {
-            if(e.repeat != true)
-                createBullet();
+
+    if (e.keyCode == 32) {
+        if (e.repeat != true)
+            createBullet();
     }
-    
+
 }
 
