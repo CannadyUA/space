@@ -73,7 +73,7 @@ function startGame() {
         },4000);
     }, 5000);
 
-    delay = getRand(1500, 2500); //delay for asteroids
+    delay = getRand(1500, 2400); //delay for asteroids
     longDelay = getRand(3500, 5000);
     starDelay = getRand(5000, 8000);
     asteroidInt = setInterval(createAsteroid, 2000);
