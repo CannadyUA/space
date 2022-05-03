@@ -121,9 +121,8 @@ body {
 .name {
     font-size: 50px;
     line-height: 75px;
-    width: 350px;
+    width: 247px;
     margin: 230px auto;
-    text-align: center;
 }
 
 .start-btn {
@@ -222,7 +221,6 @@ body {
     background-color: #ff0000;
     position: absolute;
 }
-
 /*asteroid*/
 .enemy-1 {
     z-index: 1;
@@ -318,6 +316,23 @@ body {
     animation: pulses 1s infinite ease-in-out;
 }
 
+@keyframes pulses {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+    }
+}
+
 .boss {
     width: 245px;
     height: 100px;
@@ -335,10 +350,10 @@ body {
     background: rgb(241, 8, 8);
     position: absolute;
     box-shadow: 0 0 5px rgb(255, 123, 121),
-        0 0 8px rgb(255, 42, 78),
-        0 0 12px rgb(255, 34, 38),
-        0 0 15px rgb(255, 3, 41),
-        0 0 25px rgb(140, 0, 255);
+    0 0 8px rgb(255, 42, 78),
+    0 0 12px rgb(255, 34, 38),
+    0 0 15px rgb(255, 3, 41),
+    0 0 25px rgb(140, 0, 255);
 
 }
 
@@ -361,35 +376,6 @@ body {
     }
 }
 
-.star {
-    width: 50px;
-    height: 50px;
-    background-image: url('./img/star2.png');
-    background-repeat: no-repeat;
-    position: absolute;
-    top: -150px;
-    left: 0px;
-    background-size: contain;
-    animation: pulses 1s infinite;
-}
-
-@keyframes pulses {
-    0% {
-        transform: scale(0.9);
-        opacity: 0.7;
-    }
-
-    50% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(0.9);
-        opacity: 0.7;
-    }
-}
-
 /*==================finish block==============================*/
 .finish {
     display: none;
@@ -401,7 +387,6 @@ body {
     width: 450px;
     margin: 230px auto;
 }
-
 .sound {
     display: inline-block;
     margin: 20px;
@@ -429,4 +414,54 @@ body {
 .win-score {
     font-size: 25px;
     margin: 30px auto;
+}
+.comment {
+    position: absolute;
+    margin: 500px 100px;  
+    transition: all 0.3s;
+}
+.comment-anim {
+    animation: comment-anim 3s;
+}
+
+@keyframes comment-anim {
+    50% {
+        transform: scale(1);
+        opacity: 100%;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0%;
+    }
+}
+.start-comment {
+    line-height: 20px;
+    position: absolute;
+    margin: 400px 80px;  
+    transition: all 0.3s;
+}
+.start-comment-anim {
+    animation: start-comment-anim 3s;
+}
+
+@keyframes start-comment-anim {
+    0% {
+        top: 500px;
+    }
+
+    100% {
+        top: 0px
+    }
+}
+.start-comment-anim-fade {
+    animation: start-comment-anim-fade 4s;
+}
+@keyframes start-comment-anim-fade {
+    0% {
+        top: 0px;
+    }
+
+    100% {
+        top: 1000px
+    }
 }
