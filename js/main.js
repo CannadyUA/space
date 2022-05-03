@@ -244,7 +244,7 @@ function moveHeart() {
 
         if (statusGame !== 'finish') {
             if (heart.offsetLeft + heart.offsetWidth >= player.offsetLeft && heart.offsetLeft <= player.offsetLeft + player.offsetWidth) {
-                if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 50 && heart.offsetTop <= player.offsetTop) {
+                if (heart.offsetTop >= player.offsetTop - player.offsetHeight + 60 && heart.offsetTop <= player.offsetTop) {
                     if (parseInt(healthBar.style.width) < 244) {
                         healthBar.style.width = healthBar.offsetWidth + 20 + 'px';
                     }
@@ -267,7 +267,7 @@ function moveStar() {
 
         if (statusGame !== 'finish') {
             if (star.offsetLeft + star.offsetWidth >= player.offsetLeft && star.offsetLeft <= player.offsetLeft + player.offsetWidth) {
-                if (star.offsetTop >= player.offsetTop - player.offsetHeight && star.offsetTop <= player.offsetTop) {
+                if (star.offsetTop >= player.offsetTop - player.offsetHeight + 60 && star.offsetTop <= player.offsetTop) {
                     numScores += 20;
                     score.innerText = "SCORE: " + numScores;
                     star.remove();

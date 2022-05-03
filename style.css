@@ -367,6 +367,8 @@ body {
     background-image: url('./img/star2.png');
     background-repeat: no-repeat;
     position: absolute;
+    top: -150px;
+    left: 0px;
     background-size: contain;
     animation: pulses 1s infinite;
 }
