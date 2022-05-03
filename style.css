@@ -121,8 +121,9 @@ body {
 .name {
     font-size: 50px;
     line-height: 75px;
-    width: 247px;
+    width: 350px;
     margin: 230px auto;
+    text-align: center;
 }
 
 .start-btn {
@@ -221,6 +222,7 @@ body {
     background-color: #ff0000;
     position: absolute;
 }
+
 /*asteroid*/
 .enemy-1 {
     z-index: 1;
@@ -350,10 +352,10 @@ body {
     background: rgb(241, 8, 8);
     position: absolute;
     box-shadow: 0 0 5px rgb(255, 123, 121),
-    0 0 8px rgb(255, 42, 78),
-    0 0 12px rgb(255, 34, 38),
-    0 0 15px rgb(255, 3, 41),
-    0 0 25px rgb(140, 0, 255);
+        0 0 8px rgb(255, 42, 78),
+        0 0 12px rgb(255, 34, 38),
+        0 0 15px rgb(255, 3, 41),
+        0 0 25px rgb(140, 0, 255);
 
 }
 
@@ -387,6 +389,7 @@ body {
     width: 450px;
     margin: 230px auto;
 }
+
 .sound {
     display: inline-block;
     margin: 20px;
@@ -415,11 +418,13 @@ body {
     font-size: 25px;
     margin: 30px auto;
 }
+
 .comment {
     position: absolute;
-    margin: 500px 100px;  
+    margin: 500px 100px;
     transition: all 0.3s;
 }
+
 .comment-anim {
     animation: comment-anim 3s;
 }
@@ -429,17 +434,20 @@ body {
         transform: scale(1);
         opacity: 100%;
     }
+
     100% {
         transform: scale(20);
         opacity: 0%;
     }
 }
+
 .start-comment {
     line-height: 20px;
     position: absolute;
-    margin: 400px 80px;  
+    margin: 400px 80px;
     transition: all 0.3s;
 }
+
 .start-comment-anim {
     animation: start-comment-anim 3s;
 }
@@ -453,9 +461,11 @@ body {
         top: 0px
     }
 }
+
 .start-comment-anim-fade {
     animation: start-comment-anim-fade 4s;
 }
+
 @keyframes start-comment-anim-fade {
     0% {
         top: 0px;
