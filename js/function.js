@@ -55,14 +55,18 @@ function bullToUfo(bullet, enemy) {
     if (bullet.offsetTop <= enemy.offsetTop + enemy.clientHeight - 50
         && bullet.offsetLeft >= enemy.offsetLeft
         && bullet.offsetLeft <= enemy.offsetLeft + enemy.clientWidth) {
+        createBoom(bullet.offsetTop, bullet.offsetLeft, "smallBoom");
+        numScores = numScores + 100;
+        score.innerText = "SCORE: " + numScores;
         bossHealt = document.querySelector('.boss-health-bar');
         bossParam = bossHealt.clientWidth;
         bossParam -= 10;
         bossHealt.style.width = bossHealt.clientWidth - 10 + 'px';
         bullet.remove();
+        
         if (bossParam < 10) {
-            mainScreen.style.display = 'none';
-            winner();
+            destroyUfo();
+            bossFight.pause();
         }
     }
 }
@@ -87,5 +91,21 @@ function bullToPlayer(bullet, player) {
 
     }
 }
+
+function destroyUfo() {
+    clearInterval(moveBoss);
+    clearInterval(bossShoting);
+    clearInterval(timerID);
+    destUfo = setInterval(function () {
+        
+        createBoom(getRand(20, 150), getRand(ufo.offsetLeft, ufo.offsetLeft + ufo.clientWidth), "bigBoom");
+    }, 1000);
+    setTimeout(function () {
+        clearInterval(destUfo);
+        winner(); 
+     }, 5000);
+}
+
+
 
 

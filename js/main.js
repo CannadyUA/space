@@ -7,6 +7,9 @@ endScreen = document.querySelector('.finish');
 winScreen = document.querySelector('.win');
 player = document.querySelector('.player');
 soundBtn = document.querySelector(".sound");
+moveBoss = 0;
+bossShoting = 0;
+timerID = 0;
 
 statusGame = 'open';
 
@@ -28,7 +31,7 @@ winSound = document.createElement('audio');
 winSound.src = 'audio/win-game.wav';
 
 gameOver = document.createElement('audio');
-gameOver.src = 'audio/game-over.wav';
+gameOver.src = 'audio/game-over.mp3';
 
 
 //helping function
@@ -296,10 +299,11 @@ function gameEnd(health) {
 function winner() {
     winScore = document.querySelector('.win-score');
     againBtn = document.querySelector('.res-btn');
-    winScore.innerText = 'SCORE: ' + numScores;
+    winScore.innerText = 'SCORE: ' + (numScores + 10000);
+    mainScreen.style.display = 'none';
     winScreen.style.display = 'block';
     bossFight.pause();
-    console.log(againBtn);
+    // console.log(againBtn);
     winSound.play();
     againBtn.onclick = function () {
         location.reload();
