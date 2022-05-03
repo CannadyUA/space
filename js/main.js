@@ -72,14 +72,15 @@ function startGame() {
             startComment.remove();
         },4000);
     }, 5000);
-    delay = getRand(1500, 2500); //затримка для астероїдів
+
+    delay = getRand(1500, 2500); //delay for asteroids
     longDelay = getRand(3500, 5000);
-    starDelay = getRand(3000, 8000);
+    starDelay = getRand(5000, 8000);
+    asteroidInt = setInterval(createAsteroid, 2000);
     asteroidInt = setInterval(createAsteroid, delay);
     asteroidInt2 = setInterval(createAsteroidBig, longDelay);
-    heartInt = setInterval(createHeart, 30000);
-    starInt = setInterval(createStar, starDelay);
-
+    heartInt = setInterval(createHeart, 30000); //delay for heart
+    starInt = setInterval(createStar, starDelay); //delay for star
 }
 
 /*================Create function===============================*/
@@ -193,6 +194,7 @@ function bossLevel() {
     mainAudio.pause();
     if (isSound == false) {
         bossFight.play();
+        bossFight.volume = 0.6;
         bossFight.loop = true;
     }
     createBossHealth();
@@ -336,7 +338,6 @@ function moveBossBull(bull) {
 /*======================Final function======================================*/
 function gameEnd(health) {
     if (health <= 0) {
-
         statusGame = 'finish';
         mainScreen.style.display = 'none';
         deleteObj();
@@ -344,7 +345,6 @@ function gameEnd(health) {
         bossFight.pause();
         gameOver.play();
         endScreen.style.display = 'block';
-
         againBtn.onclick = function () {
             location.reload();
         }
