@@ -33,6 +33,9 @@ winSound.src = 'audio/win-game.wav';
 gameOver = document.createElement('audio');
 gameOver.src = 'audio/game-over.mp3';
 
+killUfo = document.createElement('audio');
+killUfo.src = 'audio/kill.mp3';
+
 
 //helping function
 function getRand(min, max) {

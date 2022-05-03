@@ -67,6 +67,7 @@ function bullToUfo(bullet, enemy) {
         if (bossParam < 10) {
             destroyUfo();
             bossFight.pause();
+            killUfo.play();
         }
     }
 }
